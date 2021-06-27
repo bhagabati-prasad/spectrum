@@ -1,0 +1,12 @@
+// responsive
+@mixin md {
+  @media (max-width: #{$laptop - 1}) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (max-width: #{$mobile - 1}) {
+    @content;
+  }
+}
