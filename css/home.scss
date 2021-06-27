@@ -42,6 +42,7 @@ body {
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
+  background-color: #111;
 }
 p {
   margin: 0;
@@ -113,9 +114,54 @@ header {
   }
 }
 
+// services
+.services {
+  @include padding;
+  background-color: $body_dark - 8;
+  .single_service {
+    background-color: #000;
+    padding: 1.7rem;
+    margin: 0.8rem 0;
+    border-radius: 5px;
+    height: 16rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    .icon {
+      color: $primary_color;
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+    }
+    h3 {
+      color: #fff;
+      font-size: 1.4rem;
+      font-family: 'Roboto Condensed', sans-serif;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+    p {
+      color: #999;
+      font-size: 0.86rem;
+      line-height: 1.7;
+      letter-spacing: 0.4px;
+    }
+    @include md {
+      h3 {
+        font-size: 1.1rem;
+      }
+      P {
+        font-size: 0.78rem;
+        line-height: 1.34;
+      }
+    }
+  }
+}
+
 // projects
 .projects {
-  padding: 7rem 0;
+  @include padding;
   background-color: $body_dark - 12;
   .project_showcase {
     width: 100%;
@@ -127,7 +173,6 @@ header {
       // background: url('../image/discuss.jpg') no-repeat;
       // background-position: center;
       background: rgba(80, 90, 114, 0.68);
-      border: 1px solid #111;
       flex: 1;
       overflow: hidden;
       transition: 0.4s ease-out;
@@ -135,8 +180,8 @@ header {
         height: 100%;
         width: 100%;
         object-fit: cover;
-        // mix-blend-mode: luminosity;
-        transition: 0.3s;
+        mix-blend-mode: luminosity;
+        transition: mix-blend-mode 0.28s ease-out;
       }
       .project_details {
         position: absolute;
@@ -154,15 +199,16 @@ header {
           rgba(0, 0, 0, 95),
           #000
         );
-        padding: 1rem 2rem;
+        padding: 1rem 2.5rem;
         visibility: hidden;
         opacity: 0;
         transform: translateY(150px);
-        transition: 0.5s ease-in-out;
+        transition: 0.24s ease-in-out;
         h5 {
           color: $primary_color;
           text-shadow: 0 0 8px #111;
-          font-family: 'Roboto', sans-serif;
+          font-size: 2rem;
+          font-family: 'Roboto Condensed', sans-serif;
           letter-spacing: 0.4px;
           margin-bottom: 0.6rem;
           white-space: nowrap;
@@ -171,7 +217,7 @@ header {
           text-overflow: ellipsis;
           opacity: 0;
           transform: translateY(80px);
-          transition: 0.77s ease-in-out;
+          transition: 0.64s ease-in-out;
         }
         p {
           color: #eee;
@@ -180,7 +226,7 @@ header {
           line-height: 1.6;
           opacity: 0;
           transform: translateY(150px);
-          transition: 0.74s ease-in-out;
+          transition: 0.64s ease-in-out;
         }
         a {
           text-decoration: none !important;
@@ -198,7 +244,7 @@ header {
           margin: 1rem 0;
           opacity: 0;
           transform: translateY(190px);
-          transition: 0.7s ease-in-out;
+          transition: 0.6s ease-in-out;
           i {
             margin-left: 0.7rem;
           }
@@ -225,7 +271,7 @@ header {
       &:hover {
         flex-grow: 3;
         img {
-          // mix-blend-mode: normal;
+          mix-blend-mode: normal;
         }
         @include sm {
           flex-grow: 5;
@@ -244,13 +290,42 @@ header {
       }
     }
   }
+  a.more {
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.7rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: $primary_color;
+    background: transparent;
+    border: 2px solid $primary_color;
+    border-radius: 4px;
+    margin: 1rem 0;
+    transition: 0.24s ease-in;
+    i {
+      margin-left: 0.7rem;
+    }
+    &:hover {
+      color: #111;
+      background: $primary_color;
+    }
+    @include sm {
+      a {
+        font-size: 0.76rem;
+        padding: 0.5rem 0.7rem;
+      }
+    }
+  }
 }
 
 // contact
 .contact {
   background-color: #000;
   .form_section {
-    padding: 5rem 0;
+    @include padding;
     .con_title {
       margin-bottom: 2rem;
       h1 {

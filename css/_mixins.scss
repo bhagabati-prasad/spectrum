@@ -10,3 +10,13 @@
     @content;
   }
 }
+
+@mixin padding($padding: 7rem) {
+  padding: $padding 0;
+  @include md {
+    padding: 4rem 0;
+  }
+  @include sm {
+    padding: 3rem 0;
+  }
+}
