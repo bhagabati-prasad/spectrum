@@ -47,42 +47,208 @@ p {
   margin: 0;
 }
 
-// hero section
-.hero {
-  background: url('../image/optics-spectrum.jpg') no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 17, 59, 0.68);
+.section_title {
+  margin-bottom: 1rem;
+  h1 {
+    color: $primary_color;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: capitalize;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    margin: 0;
   }
-  &_container {
-    min-height: 100vh;
+  span {
+    height: 2px;
+    width: 2rem;
+    display: inline-block;
+    background-color: $primary_color;
+    margin-right: 0.8rem;
+    border-radius: 3rem;
+  }
+  p {
+    color: #eee;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+}
+
+// header section
+header {
+  // navbar section
+  // hero section
+  .hero {
+    background: url('../image/optics-spectrum.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 17, 59, 0.68);
+    }
+    &_container {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      position: relative;
+      h1 {
+        max-width: 600px;
+        color: #fff;
+        font-size: 4rem;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+// projects
+.projects {
+  padding: 7rem 0;
+  background-color: $body_dark - 12;
+  .project_showcase {
     width: 100%;
     display: flex;
-    align-items: center;
-    position: relative;
-    h1 {
-      max-width: 600px;
-      color: #fff;
-      font-size: 4rem;
-      font-family: 'Roboto Condensed', sans-serif;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+    padding: 2rem 0;
+    .single_project {
+      position: relative;
+      height: 24rem;
+      // background: url('../image/discuss.jpg') no-repeat;
+      // background-position: center;
+      background: rgba(80, 90, 114, 0.68);
+      border: 1px solid #111;
+      flex: 1;
+      overflow: hidden;
+      transition: 0.4s ease-out;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        // mix-blend-mode: luminosity;
+        transition: 0.3s;
+      }
+      .project_details {
+        position: absolute;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.2),
+          rgba(0, 0, 0, 0.6),
+          rgba(0, 0, 0, 95),
+          #000
+        );
+        padding: 1rem 2rem;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(150px);
+        transition: 0.5s ease-in-out;
+        h5 {
+          color: $primary_color;
+          text-shadow: 0 0 8px #111;
+          font-family: 'Roboto', sans-serif;
+          letter-spacing: 0.4px;
+          margin-bottom: 0.6rem;
+          white-space: nowrap;
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          opacity: 0;
+          transform: translateY(80px);
+          transition: 0.77s ease-in-out;
+        }
+        p {
+          color: #eee;
+          font-size: 0.9rem;
+          letter-spacing: 0.4px;
+          line-height: 1.6;
+          opacity: 0;
+          transform: translateY(150px);
+          transition: 0.74s ease-in-out;
+        }
+        a {
+          text-decoration: none !important;
+          display: flex;
+          align-items: center;
+          padding: 0.8rem 1.7rem;
+          font-size: 1rem;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 600;
+          letter-spacing: 1px;
+          color: $primary_color;
+          background: transparent;
+          border: 2px solid $primary_color;
+          border-radius: 4px;
+          margin: 1rem 0;
+          opacity: 0;
+          transform: translateY(190px);
+          transition: 0.7s ease-in-out;
+          i {
+            margin-left: 0.7rem;
+          }
+          &:hover {
+            color: #111;
+            background: $primary_color;
+          }
+        }
+        @include sm {
+          padding: 0.8rem 1rem;
+          h5 {
+            font-size: 1.25rem;
+          }
+          p {
+            font-size: 0.7rem;
+          }
+          a {
+            font-size: 0.76rem;
+            padding: 0.5rem 0.7rem;
+          }
+        }
+      }
+      // on hover project
+      &:hover {
+        flex-grow: 3;
+        img {
+          // mix-blend-mode: normal;
+        }
+        @include sm {
+          flex-grow: 5;
+        }
+        .project_details {
+          visibility: visible;
+          opacity: 1;
+          transform: translateY(0);
+          h5,
+          p,
+          a {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
     }
   }
 }
 
 // contact
 .contact {
-  background-color: #000 + 10;
+  background-color: #000;
   .form_section {
     padding: 5rem 0;
     .con_title {
@@ -193,13 +359,38 @@ p {
   }
 }
 
+// companies
+.company {
+  background-color: $body_dark - 12;
+  padding: 5rem 0;
+  &_logo {
+    height: 10rem;
+    padding: 0.6rem 1rem;
+    background-color: #111;
+    border-radius: 8px;
+    box-shadow: 2px 4px 12px #000;
+    transition: 0.24s;
+    img {
+      height: 100%;
+      filter: grayscale(90%);
+      transition: filter 0.24s;
+    }
+    &:hover {
+      box-shadow: 2px 8px 16px #000;
+      img {
+        filter: grayscale(0%);
+      }
+    }
+  }
+}
+
 // footer
 footer {
   margin-top: auto;
   padding: 6rem 0 2rem 0;
   color: rgb(160, 160, 160);
   font-size: 1.05rem;
-  background-color: #111;
+  background-color: #000;
   // background: url('../image/light\ spray.jpg') no-repeat;
   // background-size: cover;
   // background-position: center;
