@@ -20,3 +20,15 @@
     padding: 3rem 0;
   }
 }
+
+@mixin animate_about {
+  animation: topBottom 4s infinite alternate ease-in-out;
+  @keyframes topBottom {
+    0% {
+      transform: translateY(-0.4rem);
+    }
+    100% {
+      transform: translateY(0.4rem);
+    }
+  }
+}

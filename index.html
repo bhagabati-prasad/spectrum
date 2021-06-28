@@ -33,6 +33,19 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- owl carousel2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+      crossorigin="anonymous"
+    />
     <!-- custom css -->
     <link rel="stylesheet" type="text/css" href="./css/home.css" />
   </head>
@@ -40,12 +53,110 @@
     <header>
       <section class="hero">
         <div class="container">
-          <div class="hero_container">
-            <h1>Welcome to Spectrum</h1>
+          <div class="row">
+            <div class="col-12 col-md-7">
+              <div class="hero_container">
+                <h2 class="main_title">
+                  T<span><i class="fas fa-fingerprint"></i></span>uch the
+                  <span>coming</span> technology.
+                </h2>
+                <h1 class="sub_title">
+                  Let's make your <span>passion</span> your
+                  <span>profession</span>.
+                </h1>
+                <div class="btn_arrow_div">
+                  <a href="#" class="hero_btn">Join with us</a>
+                  <a href="#about" class="arrow_down"
+                    ><i class="fa fa-angle-down"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </header>
+
+    <!-- about us -->
+    <section class="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-12 col-lg-6 order-2 order-lg-1 py-3">
+            <div class="about_image">
+              <img src="./image/dark-code.jpg" class="img-fluid" alt="about" />
+            </div>
+          </div>
+          <div
+            class="col-12 col-md-12 col-lg-6 order-1 order-lg-2 py-4 py-lg-2"
+          >
+            <div class="about_content">
+              <h4>Who are we ?</h4>
+              <h2>
+                We let you push your limit to improve your skill for a better
+                future.
+              </h2>
+              <p>
+                SPECTRUM ,Technical society of COLLEGE OF ENGINEERING AND
+                TECHNOLOGY, BHUBANESWAR,a place for all technical enthusiasts to
+                learn, discover and innovate new things in the field of
+                Technology and Design. The name of the club
+                <strong>SPECTRUM</strong>, a contribution of our alumni of 2015
+                batch, is particularly used to describe the characteristic
+                colors of visible light after passing through a prism, similarly
+                students of CET consist of different skills within them and
+                Spectrum acts like a prism, Spectrum recognizes their skills and
+                helps to strengthen them.
+              </p>
+              <p>
+                This club was established by
+                <strong>" Bikram Keshari Panda (2015 batch) "</strong>.Spectrum
+                got its recognition in the year 2016 and got its workspace,
+                funding and other facilities. Primarily this was his idea to
+                have an electronics society in our college but with the efforts
+                of other members we established two other wings - Software and
+                Design.The other seniors who had their valuable contribution for
+                this initiative were: Ankit Mishra, Zighnesh Biswal, Abhishek
+                Dash, Avinash Nayak, Tapan Kumar Pal, Krutikesh Sahoo, Abhilash
+                Das.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- companies -->
+    <section class="company">
+      <div class="container">
+        <div class="row">
+          <div
+            class="
+              d-flex
+              flex-wrap
+              justify-content-between
+              align-items-stretch
+              py-5
+            "
+          >
+            <div class="company_logo">
+              <img src="./image/auum.png" alt="auum" />
+            </div>
+            <div class="company_logo">
+              <img src="./image/infigon.png" alt="infigon" />
+            </div>
+            <div class="company_logo">
+              <img src="./image/offiql.png" alt="offiql" />
+            </div>
+            <div class="company_logo">
+              <img src="./image/pelmach.png" alt="pelmach" />
+            </div>
+            <div class="company_logo">
+              <img src="./image/fablab.png" alt="fablab" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- services -->
     <section class="services">
@@ -103,7 +214,7 @@
           </div>
           <div class="col-12 col-md-4">
             <div class="single_service">
-              <div class="icon"><i class="far fa-hdd"></i></div>
+              <div class="icon"><i class="fas fa-microchip"></i></div>
               <h3>Embedded System</h3>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim
@@ -147,7 +258,7 @@
               at illum laborum dolore laboriosam repellat magnam reprehenderit
               earum dolor architecto.
             </p>
-            <a href="#">More <i class="fas fa-arrow-right"></i></a>
+            <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
         </div>
         <div class="single_project">
@@ -159,7 +270,7 @@
               at illum laborum dolore laboriosam repellat magnam reprehenderit
               earum dolor architecto.
             </p>
-            <a href="#">More <i class="fas fa-arrow-right"></i></a>
+            <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
         </div>
         <div class="single_project">
@@ -171,7 +282,7 @@
               at illum laborum dolore laboriosam repellat magnam reprehenderit
               earum dolor architecto.
             </p>
-            <a href="#">More <i class="fas fa-arrow-right"></i></a>
+            <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
         </div>
         <div class="single_project">
@@ -183,7 +294,7 @@
               at illum laborum dolore laboriosam repellat magnam reprehenderit
               earum dolor architecto.
             </p>
-            <a href="#">More <i class="fas fa-arrow-right"></i></a>
+            <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
         </div>
         <div class="single_project">
@@ -195,7 +306,7 @@
               at illum laborum dolore laboriosam repellat magnam reprehenderit
               earum dolor architecto.
             </p>
-            <a href="#">More <i class="fas fa-arrow-right"></i></a>
+            <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
         </div>
         <div class="single_project">
@@ -207,7 +318,7 @@
               at illum laborum dolore laboriosam repellat magnam reprehenderit
               earum dolor architecto.
             </p>
-            <a href="#">More <i class="fas fa-arrow-right"></i></a>
+            <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
         </div>
       </div>
@@ -302,48 +413,6 @@
                 allowfullscreen=""
                 loading="lazy"
               ></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- companies -->
-    <section class="company">
-      <div class="container">
-        <div class="row">
-          <div class="section_title">
-            <h1>Our clients</h1>
-            <div class="d-flex align-items-center">
-              <span></span>
-              <p>We're working with</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div
-            class="
-              d-flex
-              flex-wrap
-              justify-content-between
-              align-items-stretch
-              py-5
-            "
-          >
-            <div class="company_logo">
-              <img src="./image/auum.png" alt="auum" />
-            </div>
-            <div class="company_logo">
-              <img src="./image/infigon.png" alt="infigon" />
-            </div>
-            <div class="company_logo">
-              <img src="./image/offiql.png" alt="offiql" />
-            </div>
-            <div class="company_logo">
-              <img src="./image/pelmach.png" alt="pelmach" />
-            </div>
-            <div class="company_logo">
-              <img src="./image/fablab.png" alt="fablab" />
             </div>
           </div>
         </div>
