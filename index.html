@@ -50,6 +50,11 @@
     <link rel="stylesheet" type="text/css" href="./css/home.css" />
   </head>
   <body>
+    <!-- preloader -->
+    <section id="preloader">
+      <div class="loading"></div>
+    </section>
+
     <!-- back to top -->
     <div id="to_top">
       <i class="fas fa-long-arrow-alt-up"></i>
@@ -58,7 +63,44 @@
     <!-- header section -->
     <header>
       <!-- navbar -->
-      <nav></nav>
+      <nav>
+        <div class="container">
+          <div class="navbar">
+            <a href="index.html" class="logo">
+              <img src="./image/favicon.png" alt="logo" />
+              <span>Spectrum</span>
+            </a>
+            <div class="toggle_btn"><i class="fas fa-bars"></i></div>
+            <ul class="menu list-unstyled">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About us</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#project">Projects</a></li>
+              <li><a href="#team">Team</a></li>
+              <li><a href="#event">Events</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Mobile nav -->
+      <section>
+        <div id="mob-menu" class="mobnav">
+          <i id="close" class="fa fa-times" aria-hidden="true"></i>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#project">Projects</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#event">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </section>
+      <!-- Mobile nav end -->
+      <!-- ------  Navbar end ------ -->
+
       <!-- hero section -->
       <section class="hero">
         <div class="container">
@@ -358,7 +400,15 @@
                 </div>
               </div>
               <div class="item">
-                <img src="./image/ux-design.jpg" alt="" />
+                <img src="./image/Mozilla-02.jpg" alt="" />
+                <div class="item_body">
+                  <p>17th Oct 2020</p>
+                  <h5>Event Name : Chit-Chat with Alumni</h5>
+                  <a href="#">Ask doubt</a>
+                </div>
+              </div>
+              <div class="item">
+                <img src="./image/medal.jpg" alt="" />
                 <div class="item_body">
                   <p>17th Oct 2020</p>
                   <h5>Event Name : Chit-Chat with Alumni</h5>
@@ -374,15 +424,7 @@
                 </div>
               </div>
               <div class="item">
-                <img src="./image/ux-design.jpg" alt="" />
-                <div class="item_body">
-                  <p>17th Oct 2020</p>
-                  <h5>Event Name : Chit-Chat with Alumni</h5>
-                  <a href="#">Ask doubt</a>
-                </div>
-              </div>
-              <div class="item">
-                <img src="./image/ux-design.jpg" alt="" />
+                <img src="./image/todo-projects.jpg" alt="" />
                 <div class="item_body">
                   <p>17th Oct 2020</p>
                   <h5>Event Name : Chit-Chat with Alumni</h5>
@@ -613,22 +655,22 @@
               <div class="item">
                 <div class="profile">
                   <div class="profile_image">
-                    <img src="./image/discuss.jpg" alt="" />
+                    <img src="./image/profile-picture.jpg" alt="" />
                   </div>
                   <div class="profile_body">
                     <h4 class="name">John Doe</h4>
                     <h6 class="designation">Admin</h6>
                     <div class="social_links">
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-facebook-f"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-instagram"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-linkedin-in"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-github"></i
                       ></a>
                     </div>
@@ -639,22 +681,22 @@
               <div class="item">
                 <div class="profile">
                   <div class="profile_image">
-                    <img src="./image/discuss.jpg" alt="" />
+                    <img src="./image/profile-picture.jpg" alt="" />
                   </div>
                   <div class="profile_body">
                     <h4 class="name">John Doe</h4>
                     <h6 class="designation">Admin</h6>
                     <div class="social_links">
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-facebook-f"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-instagram"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-linkedin-in"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-github"></i
                       ></a>
                     </div>
@@ -665,22 +707,22 @@
               <div class="item">
                 <div class="profile">
                   <div class="profile_image">
-                    <img src="./image/discuss.jpg" alt="" />
+                    <img src="./image/profile-picture.jpg" alt="" />
                   </div>
                   <div class="profile_body">
                     <h4 class="name">John Doe</h4>
                     <h6 class="designation">Admin</h6>
                     <div class="social_links">
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-facebook-f"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-instagram"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-linkedin-in"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-github"></i
                       ></a>
                     </div>
@@ -691,22 +733,22 @@
               <div class="item">
                 <div class="profile">
                   <div class="profile_image">
-                    <img src="./image/discuss.jpg" alt="" />
+                    <img src="./image/profile-picture.jpg" alt="" />
                   </div>
                   <div class="profile_body">
                     <h4 class="name">John Doe</h4>
                     <h6 class="designation">Admin</h6>
                     <div class="social_links">
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-facebook-f"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-instagram"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-linkedin-in"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-github"></i
                       ></a>
                     </div>
@@ -717,22 +759,22 @@
               <div class="item">
                 <div class="profile">
                   <div class="profile_image">
-                    <img src="./image/discuss.jpg" alt="" />
+                    <img src="./image/profile-picture.jpg" alt="" />
                   </div>
                   <div class="profile_body">
                     <h4 class="name">John Doe</h4>
                     <h6 class="designation">Admin</h6>
                     <div class="social_links">
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-facebook-f"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-instagram"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-linkedin-in"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-github"></i
                       ></a>
                     </div>
@@ -743,22 +785,22 @@
               <div class="item">
                 <div class="profile">
                   <div class="profile_image">
-                    <img src="./image/discuss.jpg" alt="" />
+                    <img src="./image/profile-picture.jpg" alt="" />
                   </div>
                   <div class="profile_body">
                     <h4 class="name">John Doe</h4>
                     <h6 class="designation">Admin</h6>
                     <div class="social_links">
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-facebook-f"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-instagram"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-linkedin-in"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-github"></i
                       ></a>
                     </div>
@@ -769,22 +811,22 @@
               <div class="item">
                 <div class="profile">
                   <div class="profile_image">
-                    <img src="./image/discuss.jpg" alt="" />
+                    <img src="./image/profile-picture.jpg" alt="" />
                   </div>
                   <div class="profile_body">
                     <h4 class="name">John Doe</h4>
                     <h6 class="designation">Admin</h6>
                     <div class="social_links">
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-facebook-f"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-instagram"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-linkedin-in"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-github"></i
                       ></a>
                     </div>
@@ -795,22 +837,22 @@
               <div class="item">
                 <div class="profile">
                   <div class="profile_image">
-                    <img src="./image/medal.jpg" alt="" />
+                    <img src="./image/profile-picture.jpg" alt="" />
                   </div>
                   <div class="profile_body">
                     <h4 class="name">John Doe</h4>
                     <h6 class="designation">Admin</h6>
                     <div class="social_links">
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-facebook-f"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-instagram"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-linkedin-in"></i
                       ></a>
-                      <a href="#" target="_blank"
+                      <a href="#" target="_blank" rel="noopener"
                         ><i class="fab fa-github"></i
                       ></a>
                     </div>
@@ -1027,10 +1069,18 @@
             "
           >
             <div class="soc_icons">
-              <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" target="_blank" rel="noopener"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" target="_blank" rel="noopener"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" target="_blank" rel="noopener"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" target="_blank" rel="noopener"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
             </div>
           </div>
         </div>

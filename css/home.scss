@@ -48,6 +48,31 @@ p {
   margin: 0;
 }
 
+section {
+  overflow: hidden !important;
+}
+
+// preloader
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  z-index: 100;
+  .loading {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../image/spectrum-circles.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
 .section_title {
   margin-bottom: 1rem;
   h1 {
@@ -135,11 +160,139 @@ p {
   &:hover {
     background-color: $primary_color;
   }
+  &.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+// Mobile nav start
+.mobnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: none;
+  i#close {
+    color: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 32px;
+    padding: 14px 18px;
+    margin: 14px 14px 0 0;
+    z-index: 99;
+  }
+  ul {
+    height: 100%;
+    width: 100%;
+    padding-top: 20px;
+    padding-left: 44px;
+    position: relative;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    li {
+      list-style-type: none;
+      display: block;
+      a {
+        text-decoration: none !important;
+        color: #eee;
+        margin: 0.8rem 0;
+        display: flex;
+        text-align: left;
+        font-size: 1.2rem;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 2px;
+        position: relative;
+        left: 0%;
+        cursor: pointer;
+        transition: 0.4s;
+        &:hover {
+          text-decoration: none;
+          color: $primary_color;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+// Mobile nav end
 
 // header section
 header {
   // navbar section
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    // background: rgba(0, 0, 0, 0.9);
+    z-index: 99;
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      a.logo {
+        text-decoration: none !important;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        img {
+          height: 2.2rem;
+        }
+        span {
+          font-size: 1.24rem;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          margin-left: 0.6rem;
+        }
+      }
+      div.toggle_btn {
+        color: #fff;
+        font-size: 1.74rem;
+        display: none;
+        padding: 4px 8px;
+        cursor: pointer;
+        @include sm {
+          display: block;
+        }
+      }
+      ul.menu {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 0;
+        @include sm {
+          display: none;
+        }
+        li {
+          a {
+            text-decoration: none !important;
+            display: flex;
+            color: #eee;
+            font-family: 'Roboto', sans-serif;
+            padding: 2px;
+            margin: 0 0.8rem;
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
+  }
   // hero section
   .hero {
     background: url('../image/optics-spectrum.jpg') no-repeat;
@@ -157,10 +310,7 @@ header {
     }
     &_container {
       min-height: 107vh;
-      // max-width: 54%;
-      padding-top: 6.7rem;
-      // text-align: center;
-      // margin: 0 auto;
+      padding-top: 7.4rem;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -194,7 +344,7 @@ header {
         line-height: 1.4;
         text-transform: capitalize;
         text-shadow: 0 0 4px #000;
-        margin: 1rem 0;
+        margin: 0.4rem 0;
         span {
           color: $primary_color + 20;
         }
@@ -812,10 +962,16 @@ header {
         .social_links {
           display: flex;
           a {
+            color: #999;
+            font-size: 1.1rem;
             text-decoration: none;
             display: flex;
             padding: 2px;
             margin: 0 5px;
+            transition: 0.24s;
+            &:hover {
+              color: $primary_color + 10;
+            }
           }
         }
       }

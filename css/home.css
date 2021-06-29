@@ -59,6 +59,31 @@ p {
   margin: 0;
 }
 
+section {
+  overflow: hidden !important;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  z-index: 100;
+}
+
+#preloader .loading {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("../image/spectrum-circles.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .section_title {
   margin-bottom: 1rem;
 }
@@ -154,6 +179,182 @@ p {
   background-color: #1e90ff;
 }
 
+#to_top.active {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.mobnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: none;
+}
+
+.mobnav i#close {
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 32px;
+  padding: 14px 18px;
+  margin: 14px 14px 0 0;
+  z-index: 99;
+}
+
+.mobnav ul {
+  height: 100%;
+  width: 100%;
+  padding-top: 20px;
+  padding-left: 44px;
+  position: relative;
+  background: #111;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.mobnav ul li {
+  list-style-type: none;
+  display: block;
+}
+
+.mobnav ul li a {
+  text-decoration: none !important;
+  color: #eee;
+  margin: 0.8rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+  position: relative;
+  left: 0%;
+  cursor: pointer;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.mobnav ul li a:hover {
+  text-decoration: none;
+  color: #1e90ff;
+  margin-left: 10px;
+}
+
+header nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 0;
+  z-index: 99;
+}
+
+header nav .navbar {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+header nav .navbar a.logo {
+  text-decoration: none !important;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header nav .navbar a.logo img {
+  height: 2.2rem;
+}
+
+header nav .navbar a.logo span {
+  font-size: 1.24rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-left: 0.6rem;
+}
+
+header nav .navbar div.toggle_btn {
+  color: #fff;
+  font-size: 1.74rem;
+  display: none;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 639px) {
+  header nav .navbar div.toggle_btn {
+    display: block;
+  }
+}
+
+header nav .navbar ul.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+}
+
+@media (max-width: 639px) {
+  header nav .navbar ul.menu {
+    display: none;
+  }
+}
+
+header nav .navbar ul.menu li a {
+  text-decoration: none !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #eee;
+  font-family: 'Roboto', sans-serif;
+  padding: 2px;
+  margin: 0 0.8rem;
+}
+
+header nav .navbar ul.menu li a:last-child {
+  margin-right: 0;
+}
+
 header .hero {
   background: url("../image/optics-spectrum.jpg") no-repeat;
   background-position: center;
@@ -173,7 +374,7 @@ header .hero::before {
 
 header .hero_container {
   min-height: 107vh;
-  padding-top: 6.7rem;
+  padding-top: 7.4rem;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -222,7 +423,7 @@ header .hero_container .sub_title {
   line-height: 1.4;
   text-transform: capitalize;
   text-shadow: 0 0 4px #000;
-  margin: 1rem 0;
+  margin: 0.4rem 0;
 }
 
 header .hero_container .sub_title span {
@@ -1200,12 +1401,20 @@ header .hero_container .btn_arrow_div a.arrow_down i {
 }
 
 #team .team_slide_container .profile_body .social_links a {
+  color: #999;
+  font-size: 1.1rem;
   text-decoration: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   padding: 2px;
   margin: 0 5px;
+  -webkit-transition: 0.24s;
+  transition: 0.24s;
+}
+
+#team .team_slide_container .profile_body .social_links a:hover {
+  color: #289aff;
 }
 
 .contact {
