@@ -8,7 +8,7 @@ $(window).on('load', function () {
 $(document).ready(function () {
   // scroll to top
   $('#to_top').on('click', function () {
-    window.scrollTo(0, 1);
+    window.scrollTo(0, 10);
   });
   // navbar background toggle on scroll
   $(window).scroll(function () {
@@ -18,7 +18,7 @@ $(document).ready(function () {
       $('header nav').addClass('shadow');
       $('#to_top').addClass('active');
     } else {
-      $('header nav').css('background', 'rgba(0, 0, 0, 0.9)');
+      $('header nav').css('background', 'transparent');
       $('header nav').removeClass('shadow');
       $('#to_top').removeClass('active');
     }
@@ -37,6 +37,13 @@ $(document).ready(function () {
   $('.mobnav ul li a').click(function () {
     $('#mob-menu').fadeOut();
   });
+});
+
+// AOS
+AOS.init({
+  offset: 120,
+  duration: 700,
+  once: true,
 });
 
 // owl carousel

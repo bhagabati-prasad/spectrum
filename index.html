@@ -17,14 +17,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- bootstrap 4 -->
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
-      integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    /> -->
     <!-- font awesome -->
     <link
       rel="stylesheet"
@@ -46,12 +38,15 @@
       integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
       crossorigin="anonymous"
     />
+    <!-- AOS -->
+    <link rel="stylesheet" type="text/css" href="./css/aos.css" />
     <!-- custom css -->
     <link rel="stylesheet" type="text/css" href="./css/home.css" />
   </head>
   <body>
     <!-- preloader -->
     <section id="preloader">
+      <h3>Loading...</h3>
       <div class="loading"></div>
     </section>
 
@@ -74,10 +69,11 @@
             <ul class="menu list-unstyled">
               <li><a href="#home">Home</a></li>
               <li><a href="#about">About us</a></li>
+              <li><a href="#events">Events</a></li>
               <li><a href="#services">Services</a></li>
-              <li><a href="#project">Projects</a></li>
+              <li><a href="#projects">Projects</a></li>
               <li><a href="#team">Team</a></li>
-              <li><a href="#event">Events</a></li>
+              <li><a href="#blog">Blog</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
@@ -90,10 +86,11 @@
           <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About us</a></li>
+            <li><a href="#events">Events</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#project">Projects</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#team">Team</a></li>
-            <li><a href="#event">Events</a></li>
+            <li><a href="#blog">Blog</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
@@ -102,7 +99,7 @@
       <!-- ------  Navbar end ------ -->
 
       <!-- hero section -->
-      <section class="hero">
+      <section class="hero" id="home">
         <div class="container">
           <div class="row">
             <div class="col-12 col-md-7">
@@ -129,18 +126,18 @@
     </header>
 
     <!-- about us -->
-    <section class="about">
+    <section id="about">
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-12 col-lg-6 order-2 order-lg-1 py-3">
-            <div class="about_image">
+            <div class="about_image" data-aos="fade-up">
               <img src="./image/dark-code.jpg" class="img-fluid" alt="about" />
             </div>
           </div>
           <div
             class="col-12 col-md-12 col-lg-6 order-1 order-lg-2 py-4 py-lg-2"
           >
-            <div class="about_content">
+            <div class="about_content" data-aos="fade-up" data-aos-delay="200">
               <h4>Who are we ?</h4>
               <h2>
                 We let you push your limit to improve your skill for a better
@@ -189,19 +186,19 @@
               py-5
             "
           >
-            <div class="company_logo">
+            <div class="company_logo" data-aos="zoom-in">
               <img src="./image/auum.png" alt="auum" />
             </div>
-            <div class="company_logo">
+            <div class="company_logo" data-aos="zoom-in" data-aos-delay="20">
               <img src="./image/infigon.png" alt="infigon" />
             </div>
-            <div class="company_logo">
+            <div class="company_logo" data-aos="zoom-in" data-aos-delay="40">
               <img src="./image/offiql.png" alt="offiql" />
             </div>
-            <div class="company_logo">
+            <div class="company_logo" data-aos="zoom-in" data-aos-delay="60">
               <img src="./image/pelmach.png" alt="pelmach" />
             </div>
-            <div class="company_logo">
+            <div class="company_logo" data-aos="zoom-in" data-aos-delay="80">
               <img src="./image/fablab.png" alt="fablab" />
             </div>
           </div>
@@ -223,7 +220,7 @@
         </div>
         <div class="row">
           <div class="col-12 col-md-6">
-            <div class="achievements_container">
+            <div class="achievements_container" data-aos="fade-up">
               <div class="single_box">
                 <div class="box_icon">
                   <i class="fas fa-trophy"></i>
@@ -369,7 +366,7 @@
               align-items-center
             "
           >
-            <div class="image_div">
+            <div class="image_div" data-aos="fade-up" data-aos-delay="200">
               <img src="./image/medal.jpg" class="img-fluid px-5" alt="" />
             </div>
           </div>
@@ -378,7 +375,7 @@
     </section>
 
     <!-- events -->
-    <section class="events">
+    <section id="events">
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-8">
@@ -388,53 +385,53 @@
                 <div class="item_body">
                   <p>17th Oct 2020</p>
                   <h5>Event Name : Chit-Chat with Alumni</h5>
-                  <a href="#">Ask doubt</a>
+                  <a href="#">More Details</a>
                 </div>
               </div>
               <div class="item">
                 <img src="./image/discuss.jpg" alt="" />
                 <div class="item_body">
-                  <p>17th Oct 2020</p>
-                  <h5>Event Name : Chit-Chat with Alumni</h5>
-                  <a href="#">Ask doubt</a>
+                  <p>2nd Oct 2020</p>
+                  <h5>Event Name : CET-B Hacktoberfest</h5>
+                  <a href="#">More Details</a>
                 </div>
               </div>
               <div class="item">
                 <img src="./image/Mozilla-02.jpg" alt="" />
                 <div class="item_body">
-                  <p>17th Oct 2020</p>
-                  <h5>Event Name : Chit-Chat with Alumni</h5>
-                  <a href="#">Ask doubt</a>
+                  <p>7th Aug 2020</p>
+                  <h5>Event Name : Webinar on "Circuits and VLSI"</h5>
+                  <a href="#">More Details</a>
                 </div>
               </div>
               <div class="item">
                 <img src="./image/medal.jpg" alt="" />
                 <div class="item_body">
-                  <p>17th Oct 2020</p>
-                  <h5>Event Name : Chit-Chat with Alumni</h5>
-                  <a href="#">Ask doubt</a>
+                  <p>25th Jul 2020</p>
+                  <h5>Event Name : Webinar on Embedded System</h5>
+                  <a href="#">More Details</a>
                 </div>
               </div>
               <div class="item">
                 <img src="./image/ux-design.jpg" alt="" />
                 <div class="item_body">
-                  <p>17th Oct 2020</p>
-                  <h5>Event Name : Chit-Chat with Alumni</h5>
-                  <a href="#">Ask doubt</a>
+                  <p>21st Jul 2020</p>
+                  <h5>Event Name : Webinar of CFP</h5>
+                  <a href="#">More Details</a>
                 </div>
               </div>
               <div class="item">
                 <img src="./image/todo-projects.jpg" alt="" />
                 <div class="item_body">
-                  <p>17th Oct 2020</p>
-                  <h5>Event Name : Chit-Chat with Alumni</h5>
-                  <a href="#">Ask doubt</a>
+                  <p>15th Jun 2020</p>
+                  <h5>Event Name : 21 Days of Programming</h5>
+                  <a href="#">More Details</a>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-12 col-lg-4 py-4 d-flex align-items-center">
-            <div class="event_content">
+            <div class="event_content" data-aos="fade-up">
               <div class="section_title">
                 <h1>Events</h1>
                 <div class="d-flex align-items-center">
@@ -459,7 +456,7 @@
     </section>
 
     <!-- services -->
-    <section class="services">
+    <section id="services">
       <div class="container">
         <div class="row">
           <div class="section_title mb-5">
@@ -537,7 +534,7 @@
     </section>
 
     <!-- project section -->
-    <section class="projects">
+    <section id="projects">
       <div class="container">
         <div class="row">
           <div class="section_title mb-5">
@@ -554,11 +551,10 @@
         <div class="single_project">
           <img src="./image/discuss.jpg" alt="" />
           <div class="project_details">
-            <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h5>
+            <h5>BHAAVANA</h5>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita
-              at illum laborum dolore laboriosam repellat magnam reprehenderit
-              earum dolor architecto.
+              It is a noiseless horn system for the vehicles to communicate with
+              each other using ultrasonic waves.
             </p>
             <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
@@ -566,11 +562,13 @@
         <div class="single_project">
           <img src="./image/todo-projects.jpg" alt="" />
           <div class="project_details">
-            <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h5>
+            <h5>SMART TOILET FOR SENIOR CITIZENS AND PATIENTS</h5>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita
-              at illum laborum dolore laboriosam repellat magnam reprehenderit
-              earum dolor architecto.
+              A semi automated toilet that is designed for the elderly people
+              and the patients. This toilet helps them defecate and urinate with
+              ease and reduces the filthy labour for the hospital authorities.
+              The use of embedded microcontroller Arduino Mega 2560 makes the
+              system smart.
             </p>
             <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
@@ -578,11 +576,11 @@
         <div class="single_project">
           <img src="./image/ux-design.jpg" alt="" />
           <div class="project_details">
-            <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h5>
+            <h5>SUPPLY BOT</h5>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita
-              at illum laborum dolore laboriosam repellat magnam reprehenderit
-              earum dolor architecto.
+              Robots help to deliver food and medicine aid in flood scenarios to
+              the affected people in remote areas. Semi finalist at IIT bombay,
+              Eyantra competition 2019-20.
             </p>
             <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
@@ -590,11 +588,10 @@
         <div class="single_project">
           <img src="./image/spectrum-circles.jpg" alt="" />
           <div class="project_details">
-            <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h5>
+            <h5>Ultrasonic Radar Based Horn System</h5>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita
-              at illum laborum dolore laboriosam repellat magnam reprehenderit
-              earum dolor architecto.
+              It is a noiseless horn system for the vehicles to communicate with
+              each other using ultrasonic waves.
             </p>
             <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
@@ -602,11 +599,14 @@
         <div class="single_project">
           <img src="./image/discuss.jpg" alt="" />
           <div class="project_details">
-            <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h5>
+            <h5>FRIENDLY-MEDICO</h5>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita
-              at illum laborum dolore laboriosam repellat magnam reprehenderit
-              earum dolor architecto.
+              In this pandemic not everyone of us have the courage to go to
+              hospitals and check our own reports.this app will take some short
+              details and keep it in a database. In future it can be used by
+              medicals to get the health data of a person and if any issue is
+              found by the doctor they can directly contact them and problems
+              can be solved over phones.
             </p>
             <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
@@ -614,11 +614,14 @@
         <div class="single_project">
           <img src="./image/todo-projects.jpg" alt="" />
           <div class="project_details">
-            <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h5>
+            <h5>Extractive-Text-Summarization</h5>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita
-              at illum laborum dolore laboriosam repellat magnam reprehenderit
-              earum dolor architecto.
+              A simple python program which can find the most important
+              sentences in a paragraph and can give them as the output. Quite
+              useful for the tasks of reading short summaries of news articles
+              and such. Unlike machine learning models, this doesn't train but
+              rather uses a graph based approach to rank the sentences based on
+              their cosine similarities and give the desired output as a result.
             </p>
             <a href="#">View on <i class="fab fa-github"></i></a>
           </div>
@@ -866,10 +869,111 @@
     </section>
 
     <!-- blogs -->
-    <section class="blog"></section>
+    <section id="blog">
+      <div class="container">
+        <div class="row">
+          <div class="section_title">
+            <h1>Blogs</h1>
+            <div class="d-flex align-items-center">
+              <span></span>
+              <p>We'd love to hear from you</p>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-12 col-md-4 d-flex" data-aos="fade-up">
+            <div class="card">
+              <div class="card_img">
+                <img src="./image/discuss.jpg" alt="" />
+              </div>
+              <div class="card_body">
+                <h4>Autocorrect using NLP</h4>
+                <p>
+                  In this era of Digitalization, almost every individual has a
+                  smartphone with them, may it be Android or iOS. The benefits
+                  of smartphone would be a never-ending list and we ain't going
+                  to focus on that in this blog ! The purpose of this post is to
+                  build an Autocorrect System from Scratch. This would be just
+                  an implementation of Natural Language Processing...
+                </p>
+                <a
+                  href="https://dev.to/spectrumcetb/autocorrect-using-nlp-3h07"
+                  target="_blank"
+                  rel="noopener"
+                  >Read</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-12 col-md-4 d-flex"
+            data-aos="fade-up"
+            data-aos-delay="50"
+          >
+            <div class="card">
+              <div class="card_img">
+                <img src="./image/todo-projects.jpg" alt="" />
+              </div>
+              <div class="card_body">
+                <h4>Can we Drink Sea Water?</h4>
+                <p>
+                  We well know the fact that 70 per cent of the earth is covered
+                  with water. But only 2 to 3 per cent of it is freshwater. And
+                  the rest is saline and ocean-based. The freshwater quantity is
+                  always constant and it only recycled by nature (atmosphere ).
+                  Even the two-third of freshwater is not available in liquid
+                  form — It’s in frozen form. Groundwater is the major source of
+                  drinking water, it provides 25 to 40 per cent of earth’s
+                  drinking water.Due to surge of ...
+                </p>
+                <a
+                  href="https://dev.to/spectrumcetb/can-we-drink-sea-water-18gb"
+                  target="_blank"
+                  rel="noopener"
+                  >Read</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-12 col-md-4 d-flex"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="card">
+              <div class="card_img">
+                <img src="./image/ux-design.jpg" alt="" />
+              </div>
+              <div class="card_body">
+                <h4>Why do I love WebDev?</h4>
+                <p>
+                  Hello Everyone, This post is for all the beginners or the
+                  newbies, who decided to start their journey in the IT world
+                  and still unaware or confused about various fields. In my
+                  point of view, you should explore every field and choose which
+                  one is your "Soul-FieldofInterest". And for the ones who are
+                  already at a great level in WebDev, you might find this kind
+                  of a Nostalgic post.So here I am, discussing about my "
+                  Soul-FieldofInterest " i.e. Web Development ...
+                </p>
+                <a
+                  href="https://dev.to/spectrumcetb/why-do-i-love-webdev-3-19b7"
+                  target="_blank"
+                  rel="noopener"
+                  >Read</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end pt-4">
+          <a href="#" class="more_btn">See all</a>
+        </div>
+      </div>
+    </section>
 
     <!-- contact section -->
-    <section class="contact">
+    <section id="contact">
       <div class="container-fluid">
         <div class="row">
           <div
@@ -880,7 +984,7 @@
               align-items-center
             "
           >
-            <div class="form_section">
+            <div class="form_section" data-aos="fade-up">
               <div class="section_title">
                 <h1>Get in touch</h1>
                 <div class="d-flex align-items-center">
@@ -945,11 +1049,11 @@
           </div>
           <div class="con-12 col-md-12 col-lg-6 pr-3 pr-lg-0">
             <div class="map_section">
-              <iframe
+              <!-- <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83037.76842227801!2d85.82283917281596!3d20.22965697519102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a7f9d486f7c3%3A0xde71ead59307dcca!2sCollege%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1624730839943!5m2!1sen!2sin"
                 allowfullscreen=""
                 loading="lazy"
-              ></iframe>
+              ></iframe> -->
             </div>
           </div>
         </div>
@@ -1069,16 +1173,28 @@
             "
           >
             <div class="soc_icons">
-              <a href="#" target="_blank" rel="noopener"
+              <a
+                href="https://www.facebook.com/spCETrum"
+                target="_blank"
+                rel="noopener"
                 ><i class="fab fa-facebook-f"></i
               ></a>
-              <a href="#" target="_blank" rel="noopener"
-                ><i class="fab fa-twitter"></i
+              <a
+                href="https://github.com/Spectrum-CETB"
+                target="_blank"
+                rel="noopener"
+                ><i class="fab fa-github"></i
               ></a>
-              <a href="#" target="_blank" rel="noopener"
+              <a
+                href="https://www.instagram.com/spectrum.cetb/?hl=en"
+                target="_blank"
+                rel="noopener"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="#" target="_blank" rel="noopener"
+              <a
+                href="https://www.linkedin.com/in/spectrum-cet-3b71431b1/"
+                target="_blank"
+                rel="noopener"
                 ><i class="fab fa-linkedin-in"></i
               ></a>
             </div>
@@ -1110,6 +1226,8 @@
       integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
       crossorigin="anonymous"
     ></script>
+    <!-- AOS -->
+    <script type="text/javascript" src="./js/aos.js"></script>
     <!-- custom js -->
     <script type="text/javascript" src="./js/script.js"></script>
   </body>
