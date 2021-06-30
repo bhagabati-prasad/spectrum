@@ -75,19 +75,6 @@ section {
   z-index: 100;
 }
 
-#preloader h3 {
-  color: #1e90ff;
-  font-size: 1.4rem;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 1px;
-  position: absolute;
-  top: 53%;
-  left: 48%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
 #preloader .loading {
   height: 10rem;
   width: 10rem;
@@ -869,7 +856,7 @@ header .hero_container .btn_arrow_div a.arrow_down:hover {
 }
 
 .achievements .image_div {
-  padding: 2.2rem;
+  padding: 2.4rem 2.2rem;
   position: relative;
 }
 

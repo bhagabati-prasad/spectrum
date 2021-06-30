@@ -63,17 +63,6 @@ section {
   background: #000;
   overflow: hidden;
   z-index: 100;
-  h3 {
-    color: $primary_color;
-    font-size: 1.4rem;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 1px;
-    position: absolute;
-    top: 53%;
-    left: 48%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-  }
   .loading {
     height: 10rem;
     width: 10rem;
@@ -586,7 +575,7 @@ header {
     }
   }
   .image_div {
-    padding: 2.2rem;
+    padding: 2.4rem 2.2rem;
     position: relative;
     &::before {
       content: '';
