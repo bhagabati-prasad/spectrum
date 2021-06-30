@@ -170,6 +170,12 @@ section {
   visibility: hidden;
   transform: translateY(80px);
   transition: 0.24s ease-in-out;
+  @include sm {
+    bottom: 1.6rem;
+    right: 1.6rem;
+    font-size: 0.9rem;
+    opacity: 0.6 !important;
+  }
   &:hover {
     color: $op_primary_color;
     background-color: $primary_color - 20;

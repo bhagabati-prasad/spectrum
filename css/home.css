@@ -205,6 +205,15 @@ section {
   transition: 0.24s ease-in-out;
 }
 
+@media (max-width: 639px) {
+  #to_top {
+    bottom: 1.6rem;
+    right: 1.6rem;
+    font-size: 0.9rem;
+    opacity: 0.6 !important;
+  }
+}
+
 #to_top:hover {
   color: #fff;
   background-color: #0a7ceb;
