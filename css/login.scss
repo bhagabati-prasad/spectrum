@@ -20,46 +20,9 @@ header {
   min-height: auto;
   position: relative;
   // background wave section
-  .ocean_bg {
-    height: 5%;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: #015871;
-    .wave {
-      background: url('../image/wave.svg') repeat-x;
-      position: absolute;
-      top: -198px;
-      width: 6400px;
-      height: 198px;
-      animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-      transform: translate3d(0, 0, 0);
-      &:nth-of-type(2) {
-        top: -175px;
-        animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite,
-          swell 7s ease -1.25s infinite;
-        opacity: 1;
-      }
-      @keyframes wave {
-        0% {
-          margin-left: 0;
-        }
-        100% {
-          margin-left: -1600px;
-        }
-      }
-      @keyframes swell {
-        0%,
-        100% {
-          transform: translate3d(0, -25px, 0);
-        }
-        50% {
-          transform: translate3d(0, 5px, 0);
-        }
-      }
-    }
-  }
+  @include wave_bg;
+
+  // form section
   .form_section {
     min-height: 100vh;
     width: 100%;
@@ -97,6 +60,13 @@ header {
           display: flex;
           flex-direction: column;
           margin: 0.5rem 0;
+          a {
+            text-decoration: none;
+            color: $primary_color + 50;
+            font-size: 0.9rem;
+            letter-spacing: 0.4px;
+            margin: 7px 9px;
+          }
         }
         label {
           color: #ccc;
@@ -104,11 +74,11 @@ header {
           padding: 4px 9px;
           cursor: pointer;
         }
-        input {
+        input:not(.form-check-input) {
           padding: 0.4rem 0.9rem;
           font-size: 0.8rem;
           outline: none;
-          color: #ccc;
+          color: #fff;
           letter-spacing: 0.5px;
           border: 2px solid $primary_color;
           border-radius: 20rem;
@@ -124,11 +94,17 @@ header {
           border: 2px solid $primary_color - 10;
           outline: none;
           padding: 0.2rem 0.9rem;
+          margin-top: 7px;
           border-radius: 3rem;
+          transition: all 0.24s;
+          &:hover {
+            background: transparent;
+            color: $primary_color;
+          }
         }
       }
       .signup_link {
-        color: #ccc;
+        color: #fff;
         font-size: 0.92rem;
         margin-top: 7px;
         a {
