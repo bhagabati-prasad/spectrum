@@ -1,0 +1,145 @@
+@import 'variables';
+@import 'mixins';
+
+// default styles
+@include defaults;
+
+/*
+"Roboto" : 300, 400, 500, 700, 900
+"Poppins" : 300, 400, 500, 600, 700, 800
+"Roboto Condensed" : 300, 400, 700
+"Montserrat": 300, 400, 500, 600
+*/
+
+// navbar
+header {
+  @include navbar;
+}
+
+.login_form_section {
+  min-height: auto;
+  position: relative;
+  // background wave section
+  .ocean_bg {
+    height: 5%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #015871;
+    .wave {
+      background: url('../image/wave.svg') repeat-x;
+      position: absolute;
+      top: -198px;
+      width: 6400px;
+      height: 198px;
+      animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+      transform: translate3d(0, 0, 0);
+      &:nth-of-type(2) {
+        top: -175px;
+        animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite,
+          swell 7s ease -1.25s infinite;
+        opacity: 1;
+      }
+      @keyframes wave {
+        0% {
+          margin-left: 0;
+        }
+        100% {
+          margin-left: -1600px;
+        }
+      }
+      @keyframes swell {
+        0%,
+        100% {
+          transform: translate3d(0, -25px, 0);
+        }
+        50% {
+          transform: translate3d(0, 5px, 0);
+        }
+      }
+    }
+  }
+  .form_section {
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    .form_container {
+      padding: 1.7rem 2.2rem;
+      width: 22.4rem;
+      max-width: 95%;
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 14px rgba(0, 0, 0, 1);
+      border-radius: 7px;
+      backdrop-filter: blur(5px);
+      h1 {
+        color: #fff;
+        font-size: 1.3rem;
+        font-family: 'Montserrat', sans-serif;
+        padding: 0.7rem 0;
+        margin-bottom: 1rem;
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 3rem;
+          height: 2px;
+          background-color: $primary_color;
+        }
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        .form_row {
+          display: flex;
+          flex-direction: column;
+          margin: 0.5rem 0;
+        }
+        label {
+          color: #ccc;
+          font-size: 0.92rem;
+          padding: 4px 9px;
+          cursor: pointer;
+        }
+        input {
+          padding: 0.4rem 0.9rem;
+          font-size: 0.8rem;
+          outline: none;
+          color: #ccc;
+          letter-spacing: 0.5px;
+          border: 2px solid $primary_color;
+          border-radius: 20rem;
+          background: transparent;
+        }
+        button {
+          color: $op_primary_color;
+          letter-spacing: 1px;
+          text-transform: capitalize;
+          font-size: 1.1rem;
+          font-family: 'Roboto Condensed', sans-serif;
+          background: $primary_color - 20;
+          border: 2px solid $primary_color - 10;
+          outline: none;
+          padding: 0.2rem 0.9rem;
+          border-radius: 3rem;
+        }
+      }
+      .signup_link {
+        color: #ccc;
+        font-size: 0.92rem;
+        margin-top: 7px;
+        a {
+          color: $primary_color + 10;
+          font-size: 114%;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}
+
+// footer
+@include footer;
