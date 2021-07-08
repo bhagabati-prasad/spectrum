@@ -177,8 +177,23 @@
       div.toggle_btn {
         color: #fff;
         font-size: 1.74rem;
-        display: none;
         padding: 4px 8px;
+        display: none;
+        cursor: pointer;
+        @include sm {
+          display: block;
+        }
+      }
+      div.back_home_btn {
+        a {
+          text-decoration: none !important;
+          color: #fff;
+          transition: all 0.24s;
+          &:hover {
+            color: $primary_color + 30;
+          }
+        }
+        display: none;
         cursor: pointer;
         @include sm {
           display: block;

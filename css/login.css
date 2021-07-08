@@ -173,13 +173,35 @@ header nav .navbar a.logo span {
 header nav .navbar div.toggle_btn {
   color: #fff;
   font-size: 1.74rem;
-  display: none;
   padding: 4px 8px;
+  display: none;
   cursor: pointer;
 }
 
 @media (max-width: 639px) {
   header nav .navbar div.toggle_btn {
+    display: block;
+  }
+}
+
+header nav .navbar div.back_home_btn {
+  display: none;
+  cursor: pointer;
+}
+
+header nav .navbar div.back_home_btn a {
+  text-decoration: none !important;
+  color: #fff;
+  -webkit-transition: all 0.24s;
+  transition: all 0.24s;
+}
+
+header nav .navbar div.back_home_btn a:hover {
+  color: #3caeff;
+}
+
+@media (max-width: 639px) {
+  header nav .navbar div.back_home_btn {
     display: block;
   }
 }
@@ -546,10 +568,10 @@ header .mobnav ul li a:hover {
   text-transform: capitalize;
   font-size: 1.1rem;
   font-family: 'Roboto Condensed', sans-serif;
-  background: #0a7ceb;
-  border: 2px solid #1486f5;
+  background: #32a4ff;
+  border: none;
   outline: none;
-  padding: 0.2rem 0.9rem;
+  padding: 0.3rem 0.9rem;
   margin-top: 7px;
   border-radius: 3rem;
   -webkit-transition: all 0.24s;
@@ -557,8 +579,7 @@ header .mobnav ul li a:hover {
 }
 
 .login_form_section .form_section .form_container form button:hover {
-  background: transparent;
-  color: #1e90ff;
+  background: #1486f5;
 }
 
 .login_form_section .form_section .form_container .signup_link {

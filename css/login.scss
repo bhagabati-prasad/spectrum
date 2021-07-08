@@ -90,16 +90,15 @@ header {
           text-transform: capitalize;
           font-size: 1.1rem;
           font-family: 'Roboto Condensed', sans-serif;
-          background: $primary_color - 20;
-          border: 2px solid $primary_color - 10;
+          background: $primary_color + 20;
+          border: none;
           outline: none;
-          padding: 0.2rem 0.9rem;
+          padding: 0.3rem 0.9rem;
           margin-top: 7px;
           border-radius: 3rem;
           transition: all 0.24s;
           &:hover {
-            background: transparent;
-            color: $primary_color;
+            background: $primary_color - 10;
           }
         }
       }

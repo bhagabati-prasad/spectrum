@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Log in</title>
+    <title>Profile</title>
     <!-- favicon -->
     <link rel="icon" href="./image/favicon.png" sizes="16x16" />
     <!-- bootstrap 5 -->
@@ -24,7 +24,7 @@
       referrerpolicy="no-referrer"
     />
     <!-- custom css -->
-    <link rel="stylesheet" type="text/css" href="./css/login.css" />
+    <link rel="stylesheet" type="text/css" href="./css/profile.css" />
   </head>
   <body>
     <!-- preloader -->
@@ -32,7 +32,7 @@
       <div class="loading"></div>
     </section> -->
 
-    <!-- Navbar -->
+    <!-- header section -->
     <header>
       <nav>
         <div class="container">
@@ -52,7 +52,7 @@
                   ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
                 >
               </li>
-              <li><a href="signup.html">Signup</a></li>
+              <li><a href="singup.html" class="link_btn">Log out</a></li>
             </ul>
           </div>
         </div>
@@ -60,47 +60,55 @@
     </header>
     <!-- ------  Navbar end ------ -->
 
-    <!-- login form section -->
-    <section class="login_form_section">
-      <!-- ocean background -->
-      <div class="ocean_bg">
-        <div class="wave"></div>
-        <div class="wave"></div>
-      </div>
-      <!-- form -->
-      <div class="container form_section">
-        <div class="form_container">
-          <h1>Log in</h1>
-          <form action="" method="POST">
-            <div class="form_row">
-              <label for="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
-                title="Invalid format"
-                required
-              />
+    <!-- profile section -->
+    <section class="profile">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-3">
+            <div class="profile_left_container">
+              <div class="profile_img">
+                <img src="./image/profile-picture.jpg" alt="profile-pic" />
+              </div>
+              <div class="domain">
+                <h5>Domain<span></span></h5>
+                <ul>
+                  <li>Branding</li>
+                  <li>UI/UX</li>
+                  <li>Web design</li>
+                </ul>
+              </div>
             </div>
-            <div class="form_row">
-              <label for="password">Password</label>
-              <input type="password" id="password" required />
-              <a href="resetpass.html">Forgot Password?</a>
+          </div>
+          <div class="col-12 col-md-8">
+            <div class="profile_right_container">
+              <div class="user_name">
+                <h1 class="name">John Doe</h1>
+                <p class="branch">M.C.A, 2nd year</p>
+              </div>
+              <div class="about">
+                <h4>About</h4>
+                <div class="about_box">
+                  <h6>Phone</h6>
+                  <p>+91 123 456 7890</p>
+                </div>
+                <div class="about_box">
+                  <h6>Email</h6>
+                  <p>yourname@email.com</p>
+                </div>
+                <div class="about_box">
+                  <h6>Address</h6>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipis</p>
+                </div>
+                <div class="about_box">
+                  <h6>Gender</h6>
+                  <p>Male</p>
+                </div>
+                <div class="about_box">
+                  <h6>Date of birth</h6>
+                  <p>01-Apr-1994</p>
+                </div>
+              </div>
             </div>
-            <div class="d-flex align-items-center form-check form-switch">
-              <input
-                type="checkbox"
-                class="form-check-input mt-0"
-                id="chkbox"
-              />
-              <label for="chkbox">Keep me signed in.</label>
-            </div>
-            <div class="form_row">
-              <button type="submit">Log in</button>
-            </div>
-          </form>
-          <div class="signup_link">
-            Don't have an account? <a href="signup.html">Sign up</a>
           </div>
         </div>
       </div>

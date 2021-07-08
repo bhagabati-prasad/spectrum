@@ -289,13 +289,35 @@ header nav .navbar a.logo span {
 header nav .navbar div.toggle_btn {
   color: #fff;
   font-size: 1.74rem;
-  display: none;
   padding: 4px 8px;
+  display: none;
   cursor: pointer;
 }
 
 @media (max-width: 639px) {
   header nav .navbar div.toggle_btn {
+    display: block;
+  }
+}
+
+header nav .navbar div.back_home_btn {
+  display: none;
+  cursor: pointer;
+}
+
+header nav .navbar div.back_home_btn a {
+  text-decoration: none !important;
+  color: #fff;
+  -webkit-transition: all 0.24s;
+  transition: all 0.24s;
+}
+
+header nav .navbar div.back_home_btn a:hover {
+  color: #3caeff;
+}
+
+@media (max-width: 639px) {
+  header nav .navbar div.back_home_btn {
     display: block;
   }
 }

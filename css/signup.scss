@@ -71,7 +71,8 @@ header {
             padding: 4px 0;
             cursor: pointer;
           }
-          input:not(.form-check-input) {
+          input:not(.form-check-input),
+          select {
             width: 100%;
             font-size: 0.8rem;
             outline: none;
@@ -80,7 +81,12 @@ header {
             border: none;
             border-bottom: 2px solid #888;
             background: transparent;
-            transition: all 0.24s;
+            transition: all 0.28s;
+            option {
+              color: #fff;
+              background: #000;
+              font-size: 1rem;
+            }
             &:hover {
               border-color: #fff;
             }
@@ -100,16 +106,15 @@ header {
             text-transform: capitalize;
             font-size: 1.1rem;
             font-family: 'Roboto Condensed', sans-serif;
-            background: $primary_color - 20;
-            border: 2px solid $primary_color - 10;
+            background: $primary_color + 20;
+            border: none;
             outline: none;
-            padding: 0.2rem 0.9rem;
+            padding: 0.3rem 0.9rem;
             border-radius: 3rem;
             margin: 1rem 0;
             transition: all 0.24s;
             &:hover {
-              background: transparent;
-              color: $primary_color;
+              background: $primary_color - 10;
             }
           }
         }
