@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in</title>
+    <!-- favicon -->
+    <link rel="icon" href="./image/favicon.png" sizes="16x16" />
+    <!-- bootstrap 5 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"
+      integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- custom css -->
+    <link rel="stylesheet" type="text/css" href="./css/login.css" />
+  </head>
+  <body>
+    <!-- preloader -->
+    <!-- <section id="preloader">
+      <div class="loading"></div>
+    </section> -->
+
+    <!-- Navbar -->
+    <header>
+      <nav>
+        <div class="container">
+          <div class="navbar">
+            <a href="/" class="logo">
+              <img src="./image/favicon.png" alt="logo" />
+              <span>Spectrum</span>
+            </a>
+            <div class="back_home_btn">
+              <a href="/" class="align-items-center"
+                ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
+              >
+            </div>
+            <ul class="menu list-unstyled">
+              <li>
+                <a href="/" class="align-items-center"
+                  ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
+                >
+              </li>
+              <li><a href="/signup">Signup</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- ------  Navbar end ------ -->
+
+    <!-- login form section -->
+    <section class="login_form_section">
+      <!-- ocean background -->
+      <div class="ocean_bg">
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+      <!-- form -->
+      <div class="container form_section">
+        <div class="form_container">
+          <h1>Log in</h1>
+          <form action="" method="POST">
+            <div class="form_row">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
+                title="Invalid format"
+                required
+              />
+            </div>
+            <div class="form_row">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" required />
+              <a href="/resetpass">Forgot Password?</a>
+            </div>
+            <div class="d-flex align-items-center form-check form-switch">
+              <input
+                type="checkbox"
+                class="form-check-input mt-0"
+                id="chkbox"
+              />
+              <label for="chkbox">Keep me signed in.</label>
+            </div>
+            <div class="form_row">
+              <button type="submit">Log in</button>
+            </div>
+          </form>
+          <div class="signup_link">
+            Don't have an account? <a href="/signup">Sign up</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    {{> footer}}
+
+    <script type="text/javascript">
+      const form = document.querySelector('form');
+      
+      function escapeHtml(unsafeStr) {
+        return unsafeStr
+              .trim()
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#039;");
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // get values
+        const email = escapeHtml(form.email.value);
+        const password = escapeHtml(form.password.value);
+
+        try {
+          const res = await fetch('/api/login', {
+            method:'POST',
+            body: JSON.stringify({email, password}),
+            headers: { 'Content-Type': 'application/json' }
+          });
+          const data = await res.json();
+          if(data.error) {
+            console.log(data.message);
+            {{!-- create error field and select dom and update text inside it --}}
+          } 
+          if(!data.error && data.isLoggedIn) {
+            location.assign('/');
+          }
+        } catch(err) {
+          console.log(err);
+        }
+      })
+    </script>
+  </body>
+</html>

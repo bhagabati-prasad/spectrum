@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <!-- favicon -->
+    <link rel="icon" href="./image/favicon.png" sizes="16x16" />
+    <!-- bootstrap 5 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"
+      integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- custom css -->
+    <link rel="stylesheet" type="text/css" href="./css/profile.css" />
+  </head>
+  <body>
+    <!-- preloader -->
+    <!-- <section id="preloader">
+      <div class="loading"></div>
+    </section> -->
+
+    <!-- header section -->
+    <header>
+      <nav>
+        <div class="container">
+          <div class="navbar">
+            <a href="/" class="logo">
+              <img src="./image/favicon.png" alt="logo" />
+              <span>Spectrum</span>
+            </a>
+            <div class="back_home_btn">
+              <a href="/" class="align-items-center"
+                ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
+              >
+            </div>
+            <ul class="menu list-unstyled">
+              <li>
+                <a href="/" class="align-items-center"
+                  ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
+                >
+              </li>
+              <li><a href="/singup" class="link_btn">Log out</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- ------  Navbar end ------ -->
+
+    <!-- profile section -->
+    <section class="profile">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-3">
+            <div class="profile_left_container">
+              <div class="profile_img">
+                <img src="./image/profile-picture.jpg" alt="profile-pic" />
+              </div>
+              <div class="domain">
+                <h5>Domain<span></span></h5>
+                <ul>
+                  <li>Branding</li>
+                  <li>UI/UX</li>
+                  <li>Web design</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-8">
+            <div class="profile_right_container">
+              <div class="user_name">
+                <h1 class="name">John Doe</h1>
+                <p class="branch">M.C.A, 2nd year</p>
+              </div>
+              <div class="about">
+                <h4>About</h4>
+                <div class="about_box">
+                  <h6>Phone</h6>
+                  <p>+91 123 456 7890</p>
+                </div>
+                <div class="about_box">
+                  <h6>Email</h6>
+                  <p>yourname@email.com</p>
+                </div>
+                <div class="about_box">
+                  <h6>Address</h6>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipis</p>
+                </div>
+                <div class="about_box">
+                  <h6>Gender</h6>
+                  <p>Male</p>
+                </div>
+                <div class="about_box">
+                  <h6>Date of birth</h6>
+                  <p>01-Apr-1994</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    {{> footer}}
+  </body>
+</html>

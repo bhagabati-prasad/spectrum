@@ -85,7 +85,7 @@
   right: 4rem;
   color: #fff;
   font-size: 1.4rem;
-  padding: 0.5rem 0.84rem;
+  padding: 0.84rem;
   background-color: $body_dark;
   border: 2px solid $primary_color + 30;
   border-radius: 10px;
@@ -263,7 +263,7 @@ header {
       transform: skew(-29deg);
     }
     img {
-      height: 100%;
+      height: auto;
       width: 100%;
       object-fit: cover;
       border-radius: 50px 4px 50px 4px;
