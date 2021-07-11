@@ -45,9 +45,9 @@
   </head>
   <body>
     <!-- preloader -->
-    <!-- <section id="preloader">
+    <section id="preloader">
       <div class="loading"></div>
-    </section> -->
+    </section>
 
     <!-- back to top -->
     <div id='to_top'>
@@ -102,7 +102,13 @@
             <li><a href='#projects'>Projects</a></li>
             <li><a href='#blog'>Blog</a></li>
             <li><a href='#contact'>Contact</a></li>
-	    <li><a href="/login">Log in</a></li>
+            <hr />
+            {{#if isLoggedIn}}
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/logout">Log out</a></li>
+            {{else}}
+	          <li><a href="/login">Log in</a></li>
+            {{/if}}
           </ul>
         </div>
       </section>

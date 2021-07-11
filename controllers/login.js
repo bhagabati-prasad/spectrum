@@ -45,7 +45,10 @@ module.exports.handleLogin = async (req, res) => {
           },
           process.env.JWT_SECRET_KEY
         );
-        res.cookie('access-token', token);
+        res.cookie('access-token', token, {
+          maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+          httpOnly: true,
+        });
         return res.status(201).json({
           error: false,
           isLoggedIn: true,

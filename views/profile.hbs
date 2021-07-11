@@ -28,37 +28,47 @@
   </head>
   <body>
     <!-- preloader -->
-    <!-- <section id="preloader">
+    <section id="preloader">
       <div class="loading"></div>
-    </section> -->
+    </section>
 
     <!-- header section -->
     <header>
       <nav>
-        <div class="container">
-          <div class="navbar">
-            <a href="/" class="logo">
-              <img src="./image/favicon.png" alt="logo" />
+        <div class='container'>
+          <div class='navbar'>
+            <a href='/' class='logo'>
+              <img src='./image/favicon.png' alt='logo' />
               <span>Spectrum</span>
             </a>
-            <div class="back_home_btn">
-              <a href="/" class="align-items-center"
-                ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
-              >
-            </div>
+            <div class='toggle_btn'><i class='fas fa-bars'></i></div>
             <ul class="menu list-unstyled">
               <li>
                 <a href="/" class="align-items-center"
                   ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
                 >
               </li>
-              <li><a href="/singup" class="link_btn">Log out</a></li>
+              <li><a href="/logout" class="link_btn">Log out</a></li>
             </ul>
           </div>
         </div>
       </nav>
-    </header>
-    <!-- ------  Navbar end ------ -->
+      <!-- Mobile nav -->
+      <section>
+        <div id='mob-menu' class='mobnav'>
+          <i id='close' class='fa fa-times' aria-hidden='true'></i>
+          <ul class="menu list-unstyled">
+              <li>
+                <a href="/" class="align-items-center"
+                  ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
+                >
+              </li>
+              <li><a href="/logout" class="link_btn">Log out</a></li>
+            </ul>
+        </div>
+      </section>
+      <!-- Mobile nav end -->
+      <!-- ------  Navbar end ------ -->
 
     <!-- profile section -->
     <section class="profile">
@@ -71,41 +81,37 @@
               </div>
               <div class="domain">
                 <h5>Domain<span></span></h5>
-                <ul>
-                  <li>Branding</li>
-                  <li>UI/UX</li>
-                  <li>Web design</li>
-                </ul>
+                <ul class="domainUL"></ul>
               </div>
             </div>
           </div>
           <div class="col-12 col-md-8">
             <div class="profile_right_container">
               <div class="user_name">
-                <h1 class="name">John Doe</h1>
-                <p class="branch">M.C.A, 2nd year</p>
+                <h1 class="name">{{user.fname}} {{user.lname}}</h1>
+                <p class="branch text-capitalize">{{user.branch}}, {{user.year}} year</p>
               </div>
               <div class="about">
                 <h4>About</h4>
                 <div class="about_box">
                   <h6>Phone</h6>
-                  <p>+91 123 456 7890</p>
+                  <p>(+91) {{user.phone}}</p>
                 </div>
                 <div class="about_box">
                   <h6>Email</h6>
-                  <p>yourname@email.com</p>
+                  <p>{{user.email}}</p>
                 </div>
                 <div class="about_box">
                   <h6>Address</h6>
-                  <p>Lorem ipsum, dolor sit amet consectetur adipis</p>
+                  <p class="text-capitalize">{{user.address}}</p>
                 </div>
                 <div class="about_box">
                   <h6>Gender</h6>
-                  <p>Male</p>
+                  <p class="text-capitalize">{{user.gender}}</p>
                 </div>
                 <div class="about_box">
                   <h6>Date of birth</h6>
-                  <p>01-Apr-1994</p>
+                  <p>{{user.dob}}</p>
                 </div>
               </div>
             </div>
@@ -116,5 +122,11 @@
 
     <!-- Footer -->
     {{> footer}}
+    <script type="text/javascript">
+      const userDomain = "{{user.domain}}";
+      const domain = document.querySelector('.domainUL');
+      const listingDomains = userDomain.split(',').map(dom => `<li>${dom}</li>`).join('');
+      domain.innerHTML = listingDomains;
+    </script>
   </body>
 </html>

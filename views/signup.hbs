@@ -28,37 +28,47 @@
   </head>
   <body>
     <!-- preloader -->
-    <!-- <section id="preloader">
+    <section id="preloader">
       <div class="loading"></div>
-    </section> -->
+    </section>
 
-    <!-- Navbar -->
+    <!-- header section -->
     <header>
       <nav>
-        <div class="container">
-          <div class="navbar">
-            <a href="/" class="logo">
-              <img src="./image/favicon.png" alt="logo" />
+        <div class='container'>
+          <div class='navbar'>
+            <a href='/' class='logo'>
+              <img src='./image/favicon.png' alt='logo' />
               <span>Spectrum</span>
             </a>
-            <div class="back_home_btn">
-              <a href="/" class="align-items-center"
-                ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
-              >
-            </div>
+            <div class='toggle_btn'><i class='fas fa-bars'></i></div>
             <ul class="menu list-unstyled">
               <li>
                 <a href="/" class="align-items-center"
                   ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
                 >
               </li>
-              <li><a href="/login">Login</a></li>
+              <li><a href="/login" class="link_btn">Log in</a></li>
             </ul>
           </div>
         </div>
       </nav>
-    </header>
-    <!-- ------  Navbar end ------ -->
+      <!-- Mobile nav -->
+      <section>
+        <div id='mob-menu' class='mobnav'>
+          <i id='close' class='fa fa-times' aria-hidden='true'></i>
+          <ul class="menu list-unstyled">
+              <li>
+                <a href="/" class="align-items-center"
+                  ><i class="fas fa-chevron-left"></i>&nbsp; Back to home</a
+                >
+              </li>
+              <li><a href="/login" class="link_btn">Log in</a></li>
+            </ul>
+        </div>
+      </section>
+      <!-- Mobile nav end -->
+      <!-- ------  Navbar end ------ -->
 
     <!-- signup form section -->
     <section class="signup_form_section">
@@ -143,12 +153,14 @@
                 />
               </div>
               <div class="form_box">
-                <label for="phone">Phone *</label>
+                <label for="phone">Phone(+91) *</label>
                 <input
                   type="text"
                   name="phone"
                   id="phone"
-                  placeholder="e.g: +91 123 456 7890"
+                  minlength="10"
+                  maxlength="12"
+                  placeholder="e.g: 123 456 7890"
                   required
                 />
               </div>
@@ -192,6 +204,7 @@
                 />
               </div>
             </div>
+            <p class="err_msg text-danger mt-3"></p>
             <div class="form_box">
               <button type="submit">Register</button>
             </div>
@@ -207,6 +220,7 @@
     {{> footer}}
 
     <script type="text/javascript">
+      const errMsg = document.querySelector('.err_msg');
       const form = document.querySelector('form');
       
       function escapeHtml(unsafeStr) {
@@ -237,18 +251,29 @@
         const conPassword = escapeHtml(form.confirm_password.value);
 
         try {
+          if(password.length < 6) {
+            errMsg.innerText = 'Password length min 6 char long.';
+          }
           if(password == conPassword) {
             const res = await fetch('/api/signup', {
               method:'POST',
               body: JSON.stringify({fname, lname, gender, dob, branch, year, email, phone, domain, address, password}),
               headers: { 'Content-Type': 'application/json' }
             });
-            console.log(res);
+            const data = await res.json();
+            if(data.error) {
+              errMsg.innerText = data.message;
+            }
+            if(!data.error && data.isLoggedIn) {
+              errMsg.innerText = '';
+              location.assign('/');
+            }
           } else {
-            console.log('password did not match')
+            errMsg.innerText = 'Password did not match.';
           }
         } catch(err) {
-          console.log(err);
+          errMsg.innerText = err;
+          console.error(err);
         }
       })
     </script>
