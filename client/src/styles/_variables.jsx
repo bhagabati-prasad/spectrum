@@ -1,54 +1,55 @@
 // ------- colors ---------
-export const light_theme = {
-  // for login & signup
-  light_gray: '#f1f1f6',
+// default colors
+export const defaults = {
+  light_grey: '#eee',
 
   primary_color: '#1e90ff',
 
   op_primary_color: '#fff',
-
-  body_bg: '#ffffff',
-
-  selection_bg: 'rgba(53, 141, 255, 0.562)',
-
-  selection_color: '#fff',
-
-  // for portfolio
-  portfolio_body_bg: '#000',
-
-  portfolio_op_body_bg_darker: '#eee',
-
-  portfolio_op_body_bg: '#fff',
-
-  portfolio_primary_color: '#1e90ff',
-
-  portfolio_op_primary_color: '#fff',
 };
 
-export const dark_theme = {
+// light theme
+export const light_theme = {
+  // setting button
+  setting_color: '#fff',
+
+  setting_bg: '#000',
+
+  setting_border: '#ccc',
+
   // for login & signup
-  light_gray: '#f1f1f6',
+  body_bg: '#f1f1f6',
 
-  primary_color: '#1e90ff',
+  op_body_bg: '#111',
 
-  op_primary_color: '#fff',
+  // for portfolio
+  portfolio_body_bg: '#fff',
 
+  portfolio_op_body_bg: '#111',
+
+  portfolio_op_body_bg_darker: '#ccc',
+};
+
+// Dark theme
+export const dark_theme = {
+  // setting button
+  setting_color: '#222',
+
+  setting_bg: '#fff',
+
+  setting_border: '#333',
+
+  // for login & signup
   body_bg: '#161616',
 
-  selection_bg: 'rgba(53, 141, 255, 0.562)',
-
-  selection_color: '#fff',
+  op_body_bg: '#fff',
 
   // for portfolio
   portfolio_body_bg: '#000',
 
-  portfolio_op_body_bg_darker: '#eee',
-
   portfolio_op_body_bg: '#fff',
 
-  portfolio_primary_color: '#1e90ff',
-
-  portfolio_op_primary_color: '#fff',
+  portfolio_op_body_bg_darker: '#333',
 };
 
 // ------- breakpoints ------

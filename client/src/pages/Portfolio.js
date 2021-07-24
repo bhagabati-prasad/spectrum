@@ -1,3 +1,5 @@
+import { useState, useEffect, useContext } from 'react';
+import { Helmet } from 'react-helmet';
 import SectionHeading from '../components/SectionHeading';
 import {
   HeroSection,
@@ -10,19 +12,45 @@ import {
   Header,
   ProjectSection,
   HeroBgSlider,
-  ThemeSettings,
 } from '../styles/PortfolioStyles';
 import Typewriter from 'typewriter-effect';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { useState, useEffect } from 'react';
+import { ThemeContext } from '../components/ThemeContext';
+
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 import image1 from '../assets/herobg1.jpg';
 import image2 from '../assets/herobg2.jpg';
 import image3 from '../assets/herobg3.jpg';
+import { dark_theme, light_theme } from '../styles/_variables';
+import ThemeToggleSetting from '../components/ThemeToggleSetting';
 
 const Portfolio = () => {
   const [header, setHeader] = useState('true');
+  const [darkmode, setDarkmode] = useState('');
+
+  const { theme } = useContext(ThemeContext);
+
+  const options = {
+    loop: true,
+    margin: 30,
+    responsiveClass: true,
+    dots: true,
+    nav: true,
+    autoplay: false,
+    smartSpeed: 1000,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 2,
+      },
+    },
+  };
 
   const listenScrollEvent = () => {
     if (window.scrollY < 73) {
@@ -32,27 +60,36 @@ const Portfolio = () => {
     }
   };
 
+  // change navbar background on scroll
   useEffect(() => {
     window.addEventListener('scroll', listenScrollEvent);
 
     return () => window.removeEventListener('scroll', listenScrollEvent);
   }, []);
 
+  // toggle body background
+  useEffect(() => {
+    setDarkmode(theme);
+  }, [theme]);
+
   return (
     <>
-      <ThemeSettings>
-        <div className='editInfo'>
-          <a href='#'>
-            <i class='fas fa-user-edit'></i>
-          </a>
-        </div>
-        <div className='toggleTheme'>
-          <button>
-            <i class='fas fa-moon'></i>
-          </button>
-        </div>
-      </ThemeSettings>
-      <Header bg={header}>
+      <Helmet>
+        <title>Portfolio</title>
+        <style>
+          {`
+            body {
+              background-color: ${
+                darkmode === 'light'
+                  ? light_theme.portfolio_body_bg
+                  : dark_theme.portfolio_body_bg
+              };
+            }
+          `}
+        </style>
+      </Helmet>
+      <ThemeToggleSetting />
+      <Header darkMode={theme} bg={header}>
         <div className='container'>
           <nav className='d-flex justify-content-between'>
             <a href='#' className='logo'>
@@ -75,7 +112,7 @@ const Portfolio = () => {
           </nav>
         </div>
       </Header>
-      <HeroSection id='hero'>
+      <HeroSection darkMode={theme} id='hero'>
         <HeroBgSlider
           images={[image1, image2, image3]}
           duration={3}
@@ -117,11 +154,11 @@ const Portfolio = () => {
           </div>
         </div>
       </HeroSection>
-      <AboutSection id='about'>
+      <AboutSection darkMode={theme} id='about'>
         <div className='container'>
           <div className='row'>
             <div className='content col-12 col-md-6'>
-              <SectionHeading fill='About ' span='me' />
+              <SectionHeading darkMode={theme} fill='About ' span='me' />
               <Description>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Exercitationem culpa esse temporibus voluptates id nam! Neque
@@ -138,11 +175,11 @@ const Portfolio = () => {
           </div>
         </div>
       </AboutSection>
-      <DetailsSection className='details'>
+      <DetailsSection darkMode={theme} className='details'>
         <div className='container'>
           <div className='row'>
             <div className='col-12 col-lg-5 d-flex align-items-center'>
-              <SectionHeading fill='More ' span='details' />
+              <SectionHeading darkMode={theme} fill='More ' span='details' />
             </div>
             <div className='col-12 col-lg-7'>
               <ul className='list-unstyled'>
@@ -193,10 +230,10 @@ const Portfolio = () => {
           </div>
         </div>
       </DetailsSection>
-      <ResumeSection id='resume'>
+      <ResumeSection darkMode={theme} id='resume'>
         <div className='container'>
           <div className='row'>
-            <SectionHeading fill='' span='Resume' />
+            <SectionHeading darkMode={theme} fill='' span='Resume' />
           </div>
           <div className='row py-4 education'>
             <h2>Education</h2>
@@ -255,21 +292,17 @@ const Portfolio = () => {
           </div>
         </div>
       </ResumeSection>
-      <ProjectSection id='projects'>
+      <ProjectSection darkMode={theme} id='projects'>
         <div className='container'>
           <div className='row'>
-            <div className='heading'>
-              <h1>
-                My <span>projects</span>
-              </h1>
-            </div>
+            <SectionHeading darkMode={theme} fill='My ' span='projects' />
           </div>
           <div className='row'>
-            <div className='col-12 col-md-6 my-3'>
-              <a href='#'>
+            <OwlCarousel className='owl-theme' {...options}>
+              <div className='item'>
                 <div className='single_project card'>
                   <div className='image'>
-                    <img src='./images/project1.png' alt='' />
+                    <img src='./images/project1.png' />
                   </div>
                   <div className='body'>
                     <h1 className='display-4'>01</h1>
@@ -278,15 +311,14 @@ const Portfolio = () => {
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       Laudantium officiis asperiores velit.
                     </p>
+                    <a href='#'>View Project</a>
                   </div>
                 </div>
-              </a>
-            </div>
-            <div className='col-12 col-md-6 my-3'>
-              <a href='#'>
+              </div>
+              <div className='item'>
                 <div className='single_project card'>
                   <div className='image'>
-                    <img src='./images/project1.png' alt='' />
+                    <img src='./images/project1.png' />
                   </div>
                   <div className='body'>
                     <h1 className='display-4'>01</h1>
@@ -295,21 +327,38 @@ const Portfolio = () => {
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       Laudantium officiis asperiores velit.
                     </p>
+                    <a href='#'>View Project</a>
                   </div>
                 </div>
-              </a>
-            </div>
+              </div>
+              <div className='item'>
+                <div className='single_project card'>
+                  <div className='image'>
+                    <img src='./images/project1.png' />
+                  </div>
+                  <div className='body'>
+                    <h1 className='display-4'>01</h1>
+                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Laudantium officiis asperiores velit.
+                    </p>
+                    <a href='#'>View Project</a>
+                  </div>
+                </div>
+              </div>
+            </OwlCarousel>
           </div>
         </div>
       </ProjectSection>
-      <ContactSection>
+      <ContactSection darkMode={theme}>
         <div className='container'>
           <div className='row'>
             <div className='content_box col-12 col-lg-8'>
-              <SectionHeading fill='Contact ' span='us' />
+              <SectionHeading darkMode='dark' fill='Contact ' span='us' />
             </div>
             <div className='col-12 col-lg-4'>
-              <div className='form_box'>
+              <div className='form_box shadow'>
                 <p>Drop a message</p>
                 <form action='' method='POST'>
                   <div className='input_fields'>
@@ -343,7 +392,7 @@ const Portfolio = () => {
           </div>
         </div>
       </ContactSection>
-      <Footer>
+      <Footer darkMode={theme}>
         <div className='container'>
           <div className='row'>
             <div className='single_box col-12 col-md-3'>

@@ -1,9 +1,13 @@
+import Signup from './pages/Signup';
 import Portfolio from './pages/Portfolio';
+import Login from './pages/Login';
 
 function App() {
   return (
     <>
-      <Portfolio />
+      <Login />
+      {/* <Signup /> */}
+      {/* <Portfolio /> */}
     </>
   );
 }
