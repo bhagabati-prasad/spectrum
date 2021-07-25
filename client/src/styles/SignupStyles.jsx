@@ -81,7 +81,7 @@ export const FormSection = styled.div`
           transition: all 0.28s;
           option {
             color: ${light_theme.op_body_bg};
-            background: #000;
+            background: ${light_theme.body_bg};
             font-size: 1rem;
           }
           &:hover {
@@ -94,6 +94,9 @@ export const FormSection = styled.div`
             darkMode === 'dark' &&
             css`
               color: ${dark_theme.op_body_bg};
+              &:hover {
+                border-color: ${dark_theme.op_body_bg};
+              }
             `}
         }
         .radio_box {
@@ -107,7 +110,7 @@ export const FormSection = styled.div`
           letter-spacing: 1px;
           text-transform: capitalize;
           font-size: 1.1rem;
-          font-family: 'Roboto Condensed', sans-serif;
+          font-family: 'Roboto', sans-serif;
           background: ${defaults.primary_color};
           border: none;
           outline: none;

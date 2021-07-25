@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { FormSection, SignupSection } from '../styles/SignupStyles';
 import WaveBackground from '../components/WaveBackground';
@@ -7,9 +8,28 @@ import { dark_theme, light_theme } from '../styles/_variables';
 import ThemeToggleSetting from '../components/ThemeToggleSetting';
 
 const Signup = () => {
+  const { theme } = useContext(ThemeContext);
+
   const [darkmode, setDarkmode] = useState('');
 
-  const { theme } = useContext(ThemeContext);
+  const [signup, setSignup] = useState({
+    fname: '',
+    mname: '',
+    lname: '',
+    email: '',
+    phone: '',
+    domain: '',
+    address: '',
+    password: '',
+  });
+
+  const handleChange = (e) =>
+    setSignup({ ...signup, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(signup);
+  };
 
   // toggle body background
   useEffect(() => {
@@ -32,14 +52,14 @@ const Signup = () => {
         </style>
       </Helmet>
       <SignupSection>
-        <ThemeToggleSetting />
+        <ThemeToggleSetting editBtn={false} />
         <WaveBackground />
         <FormSection darkMode={theme}>
-          <div class='form_container'>
+          <div className='form_container'>
             <h1>Sign up</h1>
-            <form method='POST'>
-              <div class='d-flex flex-column flex-md-row justify-content-between'>
-                <div class='form_box'>
+            <form method='POST' onSubmit={handleSubmit}>
+              <div className='d-flex flex-column flex-md-row justify-content-between'>
+                <div className='form_box'>
                   <label htmlFor='fname'>First Name *</label>
                   <input
                     type='text'
@@ -47,9 +67,25 @@ const Signup = () => {
                     id='fname'
                     placeholder='e.g: John'
                     required
+                    value={signup.fname}
+                    onChange={handleChange}
                   />
                 </div>
-                <div class='form_box'>
+                <div className='form_box'>
+                  <label htmlFor='lname'>Middle Name</label>
+                  <input
+                    type='text'
+                    name='mname'
+                    id='mname'
+                    placeholder='e.g: Doe'
+                    required
+                    value={signup.mname}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <div className='d-flex flex-column flex-md-row justify-content-between'>
+                <div className='form_box'>
                   <label htmlFor='lname'>Last Name *</label>
                   <input
                     type='text'
@@ -57,47 +93,55 @@ const Signup = () => {
                     id='lname'
                     placeholder='e.g: Doe'
                     required
+                    value={signup.lname}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className='form_box'>
+                  <label htmlFor='phone'>Phone(+91) *</label>
+                  <input
+                    type='text'
+                    name='phone'
+                    id='phone'
+                    minLength='10'
+                    maxLength='12'
+                    placeholder='e.g: 123 456 7890'
+                    required
+                    value={signup.phone}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
-              <div class='d-flex flex-column flex-md-row justify-content-between'>
-                <div class='form_box'>
-                  <label htmlFor='gender'>Gender *</label>
-                  <select name='gender' id='gender' required>
-                    <option value=''>Select</option>
-                    <option value='male'>Male</option>
-                    <option value='female'>Female</option>
-                    <option value='other'>Other</option>
-                  </select>
-                </div>
-                <div class='form_box'>
-                  <label htmlFor='dob'>Date of birth *</label>
-                  <input type='date' name='dob' id='dob' required />
-                </div>
-                <div class='form_box'>
-                  <label htmlFor='branch'>Branch *</label>
-                  <select name='branch' id='branch' required>
-                    <option value=''>Select</option>
-                    <option value='B.Tech'>B.Tech</option>
-                    <option value='Int.M.Sc'>Int.M.Sc</option>
-                    <option value='Int.M.C.A'>Int.M.C.A</option>
-                    <option value='M.C.A'>M.C.A</option>
-                    <option value='M.Tech'>M.Tech</option>
-                  </select>
+              <div className='d-flex flex-column flex-md-row justify-content-between'>
+                <div className='form_box'>
+                  <label htmlFor='domain'>Domain *</label>
+                  <input
+                    type='text'
+                    name='domain'
+                    id='domain'
+                    placeholder='e.g: UI/UX, Web Design, Mobile App Design'
+                    required
+                    value={signup.domain}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
-              <div class='d-flex flex-column flex-md-row justify-content-between'>
-                <div class='form_box'>
-                  <label htmlFor='year'>Year *</label>
-                  <select name='year' id='year' required>
-                    <option value=''>Select</option>
-                    <option value='1st'>1st</option>
-                    <option value='2nd'>2nd</option>
-                    <option value='3rd'>3rd</option>
-                    <option value='4th'>4th</option>
-                  </select>
+              <div className='d-flex flex-column flex-md-row justify-content-between'>
+                <div className='form_box'>
+                  <label htmlFor='address'>Address *</label>
+                  <input
+                    type='text'
+                    name='address'
+                    id='address'
+                    placeholder='Plot, street, area, city, state, pincode'
+                    required
+                    value={signup.address}
+                    onChange={handleChange}
+                  />
                 </div>
-                <div class='form_box'>
+              </div>
+              <div className='d-flex flex-column flex-md-row justify-content-between'>
+                <div className='form_box'>
                   <label htmlFor='email'>Email *</label>
                   <input
                     type='email'
@@ -107,74 +151,31 @@ const Signup = () => {
                     pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})'
                     title='Invalid format'
                     required
+                    value={signup.email}
+                    onChange={handleChange}
                   />
                 </div>
-                <div class='form_box'>
-                  <label htmlFor='phone'>Phone(+91) *</label>
-                  <input
-                    type='text'
-                    name='phone'
-                    id='phone'
-                    minlength='10'
-                    maxlength='12'
-                    placeholder='e.g: 123 456 7890'
-                    required
-                  />
-                </div>
-              </div>
-              <div class='d-flex flex-column flex-md-row justify-content-between'>
-                <div class='form_box'>
-                  <label htmlFor='domain'>Domain *</label>
-                  <input
-                    type='text'
-                    name='domain'
-                    id='domain'
-                    placeholder='e.g: UI/UX, Web Design, Mobile App Design'
-                    required
-                  />
-                </div>
-              </div>
-              <div class='d-flex flex-column flex-md-row justify-content-between'>
-                <div class='form_box'>
-                  <label htmlFor='address'>Address *</label>
-                  <input
-                    type='text'
-                    name='address'
-                    id='address'
-                    placeholder='Plot, street, area, city, state, pincode'
-                    required
-                  />
-                </div>
-              </div>
-              <div class='d-flex flex-column flex-md-row justify-content-between'>
-                <div class='form_box'>
+                <div className='form_box'>
                   <label htmlFor='password'>Password *</label>
                   <input
                     type='password'
                     name='password'
-                    minlength='6'
+                    minLength='6'
                     placeholder='minimum 6 character long'
                     id='password'
                     required
-                  />
-                </div>
-                <div class='form_box'>
-                  <label htmlFor='con_password'>Confirm password *</label>
-                  <input
-                    type='password'
-                    name='confirm_password'
-                    id='con_password'
-                    required
+                    value={signup.password}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
-              <p class='err_msg text-danger mt-3'></p>
-              <div class='form_box'>
+              <p className='err_msg text-danger mt-3'></p>
+              <div className='form_box'>
                 <button type='submit'>Register</button>
               </div>
             </form>
-            <div class='login_link'>
-              Already have an account? <a href='/login'>Log in</a>
+            <div className='login_link'>
+              Already have an account? <Link to='/login'>Log in</Link>
             </div>
           </div>
         </FormSection>

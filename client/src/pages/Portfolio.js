@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import SectionHeading from '../components/SectionHeading';
 import {
@@ -92,21 +93,29 @@ const Portfolio = () => {
       <Header darkMode={theme} bg={header}>
         <div className='container'>
           <nav className='d-flex justify-content-between'>
-            <a href='#' className='logo'>
+            <Link to='/' className='logo'>
               Logo
-            </a>
+            </Link>
             <ul className='list-unstyled d-flex justify-content-end m-0'>
               <li>
-                <a href='#'>Home</a>
+                <Link onClick={() => window.location.replace('/#hero')}>
+                  Home
+                </Link>
               </li>
               <li>
-                <a href='#'>About</a>
+                <Link onClick={() => window.location.replace('/#about')}>
+                  About
+                </Link>
               </li>
               <li>
-                <a href='#'>Projects</a>
+                <Link onClick={() => window.location.replace('/#projects')}>
+                  Projects
+                </Link>
               </li>
               <li>
-                <a href='#'>Contact</a>
+                <Link onClick={() => window.location.replace('/#contact')}>
+                  Contact
+                </Link>
               </li>
             </ul>
           </nav>
@@ -138,18 +147,18 @@ const Portfolio = () => {
               </div>
             </div>
             <div className='soc_icon'>
-              <a href='#' className='ml-0' target='_blank' rel='noopener'>
+              <Link to='/' className='ml-0' target='_blank' rel='noopener'>
                 <i className='fab fa-facebook-f'></i>
-              </a>
-              <a href='#' target='_blank' rel='noopener'>
+              </Link>
+              <Link to='/' target='_blank' rel='noopener'>
                 <i className='fab fa-twitter'></i>
-              </a>
-              <a href='#' target='_blank' rel='noopener'>
+              </Link>
+              <Link to='/' target='_blank' rel='noopener'>
                 <i className='fab fa-instagram'></i>
-              </a>
-              <a href='#' target='_blank' rel='noopener'>
+              </Link>
+              <Link to='/' target='_blank' rel='noopener'>
                 <i className='fab fa-linkedin-in'></i>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -165,7 +174,7 @@ const Portfolio = () => {
                 dignissimos doloremque rerum hic optio accusantium placeat
                 adipisci ad. Eaque, fuga qui? Quasi, laudantium!
               </Description>
-              <a href='#'>Download CV</a>
+              <Link to='/'>Download CV</Link>
             </div>
             <div className='image col-12 col-md-6 py-3 d-flex justify-content-end'>
               <div className='image'>
@@ -311,7 +320,7 @@ const Portfolio = () => {
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       Laudantium officiis asperiores velit.
                     </p>
-                    <a href='#'>View Project</a>
+                    <Link to='/'>View Project</Link>
                   </div>
                 </div>
               </div>
@@ -327,7 +336,7 @@ const Portfolio = () => {
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       Laudantium officiis asperiores velit.
                     </p>
-                    <a href='#'>View Project</a>
+                    <Link to='/'>View Project</Link>
                   </div>
                 </div>
               </div>
@@ -343,7 +352,7 @@ const Portfolio = () => {
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       Laudantium officiis asperiores velit.
                     </p>
-                    <a href='#'>View Project</a>
+                    <Link to='/'>View Project</Link>
                   </div>
                 </div>
               </div>
@@ -351,7 +360,7 @@ const Portfolio = () => {
           </div>
         </div>
       </ProjectSection>
-      <ContactSection darkMode={theme}>
+      <ContactSection darkMode={theme} id='contact'>
         <div className='container'>
           <div className='row'>
             <div className='content_box col-12 col-lg-8'>
@@ -420,18 +429,18 @@ const Portfolio = () => {
             '
             >
               <div className='soc_icon d-flex justify-content-md-end justify-content-start'>
-                <a href='#' className='ml-0' target='_blank' rel='noopener'>
+                <Link to='/' className='ml-0' target='_blank' rel='noopener'>
                   <i className='fab fa-facebook-f'></i>
-                </a>
-                <a href='#' target='_blank' rel='noopener'>
+                </Link>
+                <Link to='/' target='_blank' rel='noopener'>
                   <i className='fab fa-twitter'></i>
-                </a>
-                <a href='#' target='_blank' rel='noopener'>
+                </Link>
+                <Link to='/' target='_blank' rel='noopener'>
                   <i className='fab fa-instagram'></i>
-                </a>
-                <a href='#' target='_blank' rel='noopener'>
+                </Link>
+                <Link to='/' target='_blank' rel='noopener'>
                   <i className='fab fa-linkedin-in'></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

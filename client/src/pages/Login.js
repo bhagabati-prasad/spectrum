@@ -8,9 +8,22 @@ import { dark_theme, light_theme } from '../styles/_variables';
 import ThemeToggleSetting from '../components/ThemeToggleSetting';
 
 const Login = () => {
+  const { theme } = useContext(ThemeContext);
+
   const [darkmode, setDarkmode] = useState('');
 
-  const { theme } = useContext(ThemeContext);
+  const [login, setLogin] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) =>
+    setLogin({ ...login, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(login);
+  };
 
   // toggle body background
   useEffect(() => {
@@ -33,12 +46,12 @@ const Login = () => {
         </style>
       </Helmet>
       <LoginSection>
-        <ThemeToggleSetting />
+        <ThemeToggleSetting editBtn={false} />
         <WaveBackground />
         <FormSection darkMode={theme}>
           <div className='form_container'>
             <h1>Log in</h1>
-            <form action='' method='POST'>
+            <form method='POST' onSubmit={handleSubmit}>
               <div className='form_row'>
                 <label htmlFor='email'>Email</label>
                 <input
@@ -48,11 +61,20 @@ const Login = () => {
                   pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})'
                   title='Invalid format'
                   required
+                  value={login.email}
+                  onChange={handleChange}
                 />
               </div>
               <div className='form_row'>
                 <label htmlFor='password'>Password</label>
-                <input type='password' name='password' id='password' required />
+                <input
+                  type='password'
+                  name='password'
+                  id='password'
+                  required
+                  value={login.password}
+                  onChange={handleChange}
+                />
               </div>
               <div className='form_row flex-row align-items-center'>
                 <input

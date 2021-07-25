@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Switch } from 'react-router-dom';
 import { ThemeContext } from '../components/ThemeContext';
 import ThemeToggleSetting from '../components/ThemeToggleSetting';
 import {
@@ -22,11 +21,10 @@ const PortfolioForm = () => {
     age: '',
     gender: '',
     email: '',
-    mobile: '',
+    phone: '',
+    domain: '',
     bio: '',
     address: '',
-    zipcode: '',
-    country: '',
   });
 
   const handleUserChange = (e) =>
@@ -45,6 +43,19 @@ const PortfolioForm = () => {
   const handleSocialChange = (e) =>
     setSocial({ ...social, [e.target.name]: e.target.value });
 
+  // education
+  const [education, setEducation] = useState([
+    { from: '', to: '', college: '', branch: '' },
+    { from: '', to: '', college: '', branch: '' },
+    { from: '', to: '', college: '', branch: '' },
+  ]);
+
+  const handleEducationChange = (index, event) => {
+    const values = [...education];
+    values[index][event.target.name] = event.target.value;
+    setEducation(values);
+  };
+
   // languages
   const [language, setLanguage] = useState({
     speaking: '',
@@ -58,9 +69,7 @@ const PortfolioForm = () => {
     if (categ === 'skills') {
       const langs = [...language.skills];
       langs[index][name] = value;
-      if (language.skills[index].rating.length <= 3) {
-        setLanguage({ ...language, skills: langs });
-      }
+      setLanguage({ ...language, skills: langs });
     } else {
       setLanguage({
         ...language,
@@ -97,7 +106,13 @@ const PortfolioForm = () => {
   // on submit form
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ ...user, social: { ...social }, projects: [...project] });
+    console.log({
+      ...user,
+      social: { ...social },
+      education: [...education],
+      language: { ...language },
+      projects: [...project],
+    });
   };
 
   return (
@@ -108,7 +123,7 @@ const PortfolioForm = () => {
       <PortfolioFormSection darkMode={theme}>
         <ThemeToggleSetting editBtn={false} />
         <div className='container'>
-          <form method='POST'>
+          <form method='POST' onSubmit={handleSubmit}>
             {/* ---- basic info ---- */}
             <InputGroupBox darkMode={theme}>
               <InputGroupHeading darkMode={theme}>
@@ -116,7 +131,7 @@ const PortfolioForm = () => {
                 <h1>Your Profile</h1>
               </InputGroupHeading>
               <div className='row'>
-                <SingleInputBox className='col-12 col-md-4'>
+                <SingleInputBox className='col-12 col-md-3'>
                   <label htmlFor='fname'>First Name *</label>
                   <input
                     type='text'
@@ -124,12 +139,13 @@ const PortfolioForm = () => {
                     id='fname'
                     placeholder='e.g: Bhagabati'
                     spellCheck='false'
+                    maxLength='20'
                     required
                     value={user.fname}
                     onChange={handleUserChange}
                   />
                 </SingleInputBox>
-                <SingleInputBox className='col-12 col-md-4'>
+                <SingleInputBox className='col-12 col-md-3'>
                   <label htmlFor='mname'>Middle Name</label>
                   <input
                     type='text'
@@ -137,18 +153,20 @@ const PortfolioForm = () => {
                     id='mname'
                     placeholder='e.g: Prasad'
                     spellCheck='false'
+                    maxLength='20'
                     required
                     value={user.mname}
                     onChange={handleUserChange}
                   />
                 </SingleInputBox>
-                <SingleInputBox className='col-12 col-md-4'>
+                <SingleInputBox className='col-12 col-md-3'>
                   <label htmlFor='lname'>Last Name *</label>
                   <input
                     type='text'
                     name='lname'
                     id='lname'
                     placeholder='e.g: Panda'
+                    maxLength='20'
                     spellCheck='false'
                     required
                     value={user.lname}
@@ -172,6 +190,7 @@ const PortfolioForm = () => {
                     type='text'
                     name='age'
                     id='age'
+                    min='10'
                     maxLength='2'
                     placeholder='e.g: 22'
                     required
@@ -188,35 +207,49 @@ const PortfolioForm = () => {
                     value={user.gender}
                     onChange={handleUserChange}
                   >
-                    <option value=''>Select</option>
+                    <option>Select</option>
                     <option value='male'>Male</option>
                     <option value='female'>Female</option>
                     <option value='other'>Other</option>
                   </select>
                 </SingleInputBox>
-                <SingleInputBox className='col-12 col-md-4'>
+                <SingleInputBox className='col-12 col-md-3'>
                   <label htmlFor='email'>Email *</label>
                   <input
                     type='email'
                     name='email'
                     id='email'
                     placeholder='e.g: yourname@email.com'
+                    pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})'
+                    title='Invalid format'
                     required
                     value={user.email}
                     onChange={handleUserChange}
                   />
                 </SingleInputBox>
-                <SingleInputBox className='col-12 col-md-3'>
-                  <label htmlFor='mobile'>Mobile *</label>
+                <SingleInputBox className='col-12 col-md-2'>
+                  <label htmlFor='phone'>Phone *</label>
                   <input
-                    type='number'
-                    name='mobile'
-                    id='mobile'
+                    type='text'
+                    name='phone'
+                    id='phone'
                     minLength='10'
                     maxLength='14'
                     placeholder='e.g: +91-1234567890'
                     required
-                    value={user.mobile}
+                    value={user.phone}
+                    onChange={handleUserChange}
+                  />
+                </SingleInputBox>
+                <SingleInputBox className='col-12 col-md-5'>
+                  <label htmlFor='domain'>Domain *</label>
+                  <input
+                    type='text'
+                    name='domain'
+                    id='domain'
+                    placeholder='e.g: Web developer, UI/UX designer, Freelancer'
+                    required
+                    value={user.domain}
                     onChange={handleUserChange}
                   />
                 </SingleInputBox>
@@ -244,49 +277,16 @@ const PortfolioForm = () => {
                         onChange={handleUserChange}
                       />
                     </SingleInputBox>
-                    <SingleInputBox
-                      darkMode={theme}
-                      className='col-12 col-md-6'
-                    >
-                      <label htmlFor='zipcode'>Zip Code *</label>
-                      <input
-                        type='text'
-                        name='zipcode'
-                        id='zipcode'
-                        placeholder='e.g: 751030'
-                        spellCheck='false'
-                        required
-                        value={user.zipcode}
-                        onChange={handleUserChange}
-                      />
+                    <SingleInputBox className='col-12 col-md-6'>
+                      <label htmlFor='resume'>CV / Resume</label>
+                      <input type='file' name='resume' id='resume' />
                     </SingleInputBox>
-                    <SingleInputBox
-                      darkMode={theme}
-                      className='col-12 col-md-6'
-                    >
-                      <label htmlFor='country'>Country *</label>
-                      <input
-                        type='text'
-                        name='country'
-                        id='country'
-                        maxLength='3'
-                        placeholder='e.g: Ind'
-                        spellCheck='false'
-                        required
-                        value={user.country}
-                        onChange={handleUserChange}
-                      />
+                    <SingleInputBox className='col-12 col-md-6'>
+                      <label htmlFor='picture'>Profile picture</label>
+                      <input type='file' name='picture' id='picture' />
                     </SingleInputBox>
                   </div>
                 </div>
-                <SingleInputBox className='col-12 col-md-6'>
-                  <label htmlFor='resume'>CV / Resume *</label>
-                  <input type='file' name='resume' id='resume' required />
-                </SingleInputBox>
-                <SingleInputBox className='col-12 col-md-6'>
-                  <label htmlFor='picture'>Profile picture *</label>
-                  <input type='file' name='picture' id='picture' required />
-                </SingleInputBox>
               </div>
             </InputGroupBox>
 
@@ -370,17 +370,97 @@ const PortfolioForm = () => {
             {/* ---- programming languages ---- */}
             <InputGroupBox darkMode={theme}>
               <InputGroupHeading darkMode={theme}>
+                <h4>Career</h4>
+                <h1>Education</h1>
+              </InputGroupHeading>
+              <div className='row'>
+                {education.map((edu, index) => (
+                  <div
+                    key={index}
+                    className='col-12 col-md-4 shadow-sm border p-3'
+                  >
+                    <div className='row'>
+                      <SingleInputBox className='col-6'>
+                        <label htmlFor='from'>From *</label>
+                        <input
+                          type='text'
+                          name='from'
+                          id='from'
+                          minLength='4'
+                          maxLength='4'
+                          placeholder='e.g: 2021'
+                          required
+                          value={edu.from}
+                          onChange={(event) =>
+                            handleEducationChange(index, event)
+                          }
+                        />
+                      </SingleInputBox>
+                      <SingleInputBox className='col-6'>
+                        <label htmlFor='to'>To *</label>
+                        <input
+                          type='text'
+                          name='to'
+                          id='to'
+                          minLength='4'
+                          maxLength='4'
+                          placeholder='e.g: 2022'
+                          required
+                          value={edu.to}
+                          onChange={(event) =>
+                            handleEducationChange(index, event)
+                          }
+                        />
+                      </SingleInputBox>
+                    </div>
+                    <SingleInputBox className='col-12'>
+                      <label htmlFor='college'>College *</label>
+                      <input
+                        type='text'
+                        name='college'
+                        id='college'
+                        placeholder='e.g: College of Engineering, Bhubaneswar'
+                        required
+                        value={edu.college}
+                        onChange={(event) =>
+                          handleEducationChange(index, event)
+                        }
+                      />
+                    </SingleInputBox>
+                    <SingleInputBox className='col-12'>
+                      <label htmlFor='branch'>Branch *</label>
+                      <input
+                        type='text'
+                        name='branch'
+                        id='branch'
+                        placeholder='e.g: Master in Computer Application'
+                        required
+                        value={edu.branch}
+                        onChange={(event) =>
+                          handleEducationChange(index, event)
+                        }
+                      />
+                    </SingleInputBox>
+                  </div>
+                ))}
+              </div>
+            </InputGroupBox>
+
+            {/* ---- programming languages ---- */}
+            <InputGroupBox darkMode={theme}>
+              <InputGroupHeading darkMode={theme}>
                 <h4>Programming</h4>
                 <h1>Languages</h1>
               </InputGroupHeading>
               <div className='row'>
                 <SingleInputBox className='col-12'>
-                  <label htmlFor='speaking'>Speaking</label>
+                  <label htmlFor='speaking'>Speaking *</label>
                   <input
                     type='text'
                     name='speaking'
                     id='speaking'
                     placeholder='e.g: Odia, Hindi, English'
+                    required
                     value={language.speaking}
                     onChange={(event) =>
                       handleLanguageChange('speaking', event)
@@ -390,12 +470,13 @@ const PortfolioForm = () => {
               </div>
               <div className='row'>
                 <SingleInputBox className='col-12'>
-                  <label htmlFor='frameworks'>Frameworks</label>
+                  <label htmlFor='frameworks'>Frameworks *</label>
                   <input
                     type='text'
                     name='frameworks'
                     id='frameworks'
                     placeholder='e.g: Bootstrap, jQuery, React, Express, Flask'
+                    required
                     value={language.frameworks}
                     onChange={(event) =>
                       handleLanguageChange('frameworks', event)
@@ -409,11 +490,12 @@ const PortfolioForm = () => {
                   <SingleInputBox className='col-12 col-md-4' key={index}>
                     <div className='row shadow p-2'>
                       <div className='col-9'>
-                        <label htmlFor='name'>Skills name</label>
+                        <label htmlFor='name'>Skills name *</label>
                         <input
                           type='text'
                           name='name'
                           placeholder='e.g: JavaScript'
+                          required
                           value={skill.name}
                           onChange={(event) =>
                             handleLanguageChange('skills', event, index)
@@ -421,11 +503,15 @@ const PortfolioForm = () => {
                         />
                       </div>
                       <div className='col-3 ps-0'>
-                        <label htmlFor='rating'>Rating</label>
+                        <label htmlFor='rating'>Rating *</label>
                         <input
-                          type='number'
+                          type='text'
                           name='rating'
-                          placeholder='7.5'
+                          min='1'
+                          max='10'
+                          maxLength='3'
+                          placeholder='e.g: 7.5'
+                          required
                           value={skill.rating}
                           onChange={(event) =>
                             handleLanguageChange('skills', event, index)
@@ -456,20 +542,22 @@ const PortfolioForm = () => {
                       <h5>
                         <strong>Project {index + 1}</strong>
                       </h5>
-                      <label htmlFor='pro-title'>Project title</label>
+                      <label htmlFor='pro-title'>Project title *</label>
                       <input
                         type='text'
                         name='title'
                         id='pro-title'
+                        required
                         value={field.title}
                         onChange={(event) => handleProjectChange(index, event)}
                       />
                     </SingleInputBox>
                     <SingleInputBox className='col-12'>
-                      <label htmlFor='pro-desc'>Project Description</label>
+                      <label htmlFor='pro-desc'>Project Description *</label>
                       <textarea
                         name='description'
                         id='pro-desc'
+                        required
                         value={field.description}
                         onChange={(event) => handleProjectChange(index, event)}
                       ></textarea>
@@ -493,9 +581,7 @@ const PortfolioForm = () => {
                   <button type='reset'>Clear form</button>
                 </div>
                 <div className='col-12 col-md-6'>
-                  <button type='submit' onClick={handleSubmit}>
-                    Submit
-                  </button>
+                  <button type='submit'>Submit</button>
                 </div>
               </div>
             </InputGroupBox>

@@ -124,7 +124,7 @@ export const SingleInputBox = styled.div`
     outline: none;
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding: 4px 0.7rem;
+    padding: 4px 0.44rem;
     transition: all 0.24s;
   }
   textarea {

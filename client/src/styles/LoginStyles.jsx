@@ -96,7 +96,7 @@ export const FormSection = styled.div`
         letter-spacing: 1px;
         text-transform: capitalize;
         font-size: 1.1rem;
-        font-family: 'Roboto Condensed', sans-serif;
+        font-family: 'Roboto', sans-serif;
         background: ${defaults.primary_color};
         border: none;
         outline: none;
