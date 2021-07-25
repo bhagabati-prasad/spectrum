@@ -40,7 +40,7 @@ const Signup = () => {
             <form method='POST'>
               <div class='d-flex flex-column flex-md-row justify-content-between'>
                 <div class='form_box'>
-                  <label for='fname'>First Name *</label>
+                  <label htmlFor='fname'>First Name *</label>
                   <input
                     type='text'
                     name='fname'
@@ -50,7 +50,7 @@ const Signup = () => {
                   />
                 </div>
                 <div class='form_box'>
-                  <label for='lname'>Last Name *</label>
+                  <label htmlFor='lname'>Last Name *</label>
                   <input
                     type='text'
                     name='lname'
@@ -62,7 +62,7 @@ const Signup = () => {
               </div>
               <div class='d-flex flex-column flex-md-row justify-content-between'>
                 <div class='form_box'>
-                  <label for='gender'>Gender *</label>
+                  <label htmlFor='gender'>Gender *</label>
                   <select name='gender' id='gender' required>
                     <option value=''>Select</option>
                     <option value='male'>Male</option>
@@ -71,11 +71,11 @@ const Signup = () => {
                   </select>
                 </div>
                 <div class='form_box'>
-                  <label for='dob'>Date of birth *</label>
+                  <label htmlFor='dob'>Date of birth *</label>
                   <input type='date' name='dob' id='dob' required />
                 </div>
                 <div class='form_box'>
-                  <label for='branch'>Branch *</label>
+                  <label htmlFor='branch'>Branch *</label>
                   <select name='branch' id='branch' required>
                     <option value=''>Select</option>
                     <option value='B.Tech'>B.Tech</option>
@@ -88,7 +88,7 @@ const Signup = () => {
               </div>
               <div class='d-flex flex-column flex-md-row justify-content-between'>
                 <div class='form_box'>
-                  <label for='year'>Year *</label>
+                  <label htmlFor='year'>Year *</label>
                   <select name='year' id='year' required>
                     <option value=''>Select</option>
                     <option value='1st'>1st</option>
@@ -98,7 +98,7 @@ const Signup = () => {
                   </select>
                 </div>
                 <div class='form_box'>
-                  <label for='email'>Email *</label>
+                  <label htmlFor='email'>Email *</label>
                   <input
                     type='email'
                     name='email'
@@ -110,7 +110,7 @@ const Signup = () => {
                   />
                 </div>
                 <div class='form_box'>
-                  <label for='phone'>Phone(+91) *</label>
+                  <label htmlFor='phone'>Phone(+91) *</label>
                   <input
                     type='text'
                     name='phone'
@@ -124,7 +124,7 @@ const Signup = () => {
               </div>
               <div class='d-flex flex-column flex-md-row justify-content-between'>
                 <div class='form_box'>
-                  <label for='domain'>Domain *</label>
+                  <label htmlFor='domain'>Domain *</label>
                   <input
                     type='text'
                     name='domain'
@@ -136,7 +136,7 @@ const Signup = () => {
               </div>
               <div class='d-flex flex-column flex-md-row justify-content-between'>
                 <div class='form_box'>
-                  <label for='address'>Address *</label>
+                  <label htmlFor='address'>Address *</label>
                   <input
                     type='text'
                     name='address'
@@ -148,7 +148,7 @@ const Signup = () => {
               </div>
               <div class='d-flex flex-column flex-md-row justify-content-between'>
                 <div class='form_box'>
-                  <label for='password'>Password *</label>
+                  <label htmlFor='password'>Password *</label>
                   <input
                     type='password'
                     name='password'
@@ -159,7 +159,7 @@ const Signup = () => {
                   />
                 </div>
                 <div class='form_box'>
-                  <label for='con_password'>Confirm password *</label>
+                  <label htmlFor='con_password'>Confirm password *</label>
                   <input
                     type='password'
                     name='confirm_password'

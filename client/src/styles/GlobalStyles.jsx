@@ -9,8 +9,6 @@ const selection_bg = 'rgba(53, 141, 255, 0.562)';
 const selection_color = '#fff';
 
 const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700;900&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Roboto+Condensed:wght@300;400;700&display=swap');
-
 ::-webkit-scrollbar {
     width: 10px;
     background-color: #222;

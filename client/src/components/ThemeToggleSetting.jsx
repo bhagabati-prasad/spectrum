@@ -19,7 +19,7 @@ const ButtonContainer = styled.div`
   width: 2.9rem;
   display: grid;
   place-items: center;
-  margin: 0.7rem 0;
+  margin: 0.5rem 0;
 `;
 
 const EditButton = styled(Link)`
@@ -70,7 +70,7 @@ const ThemeToggleButton = styled.button`
     `}
 `;
 
-const ThemeToggleSetting = () => {
+const ThemeToggleSetting = ({ editBtn = true }) => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   const handleToggle = () => {
@@ -80,7 +80,7 @@ const ThemeToggleSetting = () => {
   return (
     <ThemeSettings>
       <ButtonContainer>
-        <EditButton to='/edit'>
+        <EditButton to='/edit' className={editBtn === true ? '' : 'd-none'}>
           <i className='fas fa-user-edit'></i>
         </EditButton>
       </ButtonContainer>

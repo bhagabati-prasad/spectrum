@@ -58,7 +58,7 @@ export const FormSection = styled.div`
         align-items: flex-start;
         margin: 0.5rem;
         label {
-          color: ${defaults.light_grey};
+          color: ${light_theme.op_body_bg};
           font-size: 0.92rem;
           padding: 4px 0;
           cursor: pointer;
