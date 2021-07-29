@@ -68,6 +68,71 @@ export const Header = styled.header`
         }
       `}
   }
+  .toggle {
+    color: ${light_theme.portfolio_op_body_bg};
+    font-size: 1.4rem;
+    padding: 4px;
+    z-index: 99;
+    ${({ bg }) =>
+      bg === 'true' &&
+      css`
+        color: ${light_theme.portfolio_body_bg};
+      `}
+    ${({ mobnav }) =>
+      mobnav === 'show' &&
+      css`
+        color: ${light_theme.portfolio_op_body_bg};
+      `}
+  }
+  /* mobile nav section */
+  & + section.mobile_nav {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    background-color: ${light_theme.portfolio_body_bg};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 9;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.47s ease;
+    ${({ mobnav }) =>
+      mobnav === 'show' &&
+      css`
+        background-color: ${light_theme.portfolio_body_bg};
+        left: 0;
+        visibility: visible;
+        opacity: 1;
+      `}
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        list-style-type: none;
+        a {
+          text-decoration: none;
+          display: flex;
+          color: ${light_theme.portfolio_op_body_bg};
+          font-size: 1.3rem;
+          text-transform: uppercase;
+          padding: 4px 0;
+          margin: 0.7rem 0;
+        }
+      }
+    }
+    ${({ darkMode }) =>
+      darkMode === 'dark' &&
+      css`
+        background-color: ${dark_theme.portfolio_body_bg};
+        ul li a {
+          color: ${dark_theme.portfolio_op_body_bg};
+        }
+      `}
+  }
 `;
 
 export const HeroBgSlider = styled(BackgroundSlider)`
@@ -91,6 +156,8 @@ export const HeroSection = styled.section`
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(
@@ -113,13 +180,6 @@ export const HeroSection = styled.section`
   }
   @media ${media.sm} {
     margin-bottom: 3rem;
-    &::before {
-      background: linear-gradient(
-        to right,
-        ${light_theme.portfolio_body_bg} 30%,
-        rgba(0, 0, 0, 0.44) 30%
-      );
-    }
   }
   .content {
     width: 30rem;
@@ -141,6 +201,7 @@ export const HeroSection = styled.section`
         font-size: 4rem;
         font-family: 'Poppins', sans-serif;
         font-weight: 700;
+        -webkit-text-stroke: 0.7px ${light_theme.portfolio_body_bg};
         letter-spacing: 1px;
         text-transform: capitalize;
         margin-bottom: 4.4rem;
@@ -175,6 +236,9 @@ export const HeroSection = styled.section`
           h1.name,
           .domain h3 {
             color: ${dark_theme.portfolio_op_body_bg};
+          }
+          h1.name {
+            -webkit-text-stroke: 0.7px ${dark_theme.portfolio_body_bg};
           }
           div.line {
             background-color: ${dark_theme.portfolio_op_body_bg};

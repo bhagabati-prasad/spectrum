@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const User = require('../model/User');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 router.post('/login', async (req, res) => {
   try {
@@ -40,12 +41,47 @@ router.post('/signup', async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(400).json({ error });
+    res.status(500).json({ error });
   }
 });
 
-router.patch('/', async (req, res) => {
-  console.log(req.body);
+router.patch('/user/update', async (req, res) => {
+  try {
+    const reqToken = req.headers['auth-token'];
+    const decoded = jwt.verify(reqToken, process.env.SECRET_TOKEN);
+    if (decoded) {
+      const data = {
+        ...req.body.user,
+        social: { ...req.body.social },
+        education: {
+          edu1: {
+            ...req.body.education[0],
+          },
+          edu2: {
+            ...req.body.education[1],
+          },
+          edu3: {
+            ...req.body.education[2],
+          },
+        },
+        language: {
+          speaking: req.body.language.speaking,
+          frameworks: req.body.language.frameworks,
+          skills: [...req.body.language.skills],
+        },
+        project: [...req.body.project],
+      };
+      const updateUser = await User.findByIdAndUpdate(decoded._id, data, {
+        new: true,
+      });
+      res.json({ isLoggedIn: true, user: updateUser });
+    } else {
+      res.json({ error: 'invalid token' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error });
+  }
 });
 
 module.exports = router;

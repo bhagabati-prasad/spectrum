@@ -32,6 +32,7 @@ import ThemeToggleSetting from '../components/ThemeToggleSetting';
 const Portfolio = () => {
   const [header, setHeader] = useState('true');
   const [darkmode, setDarkmode] = useState('');
+  const [mobNav, setMobNav] = useState('show');
 
   const { theme } = useContext(ThemeContext);
 
@@ -52,6 +53,8 @@ const Portfolio = () => {
       },
     },
   };
+
+  const handleToggleNav = () => setMobNav(mobNav === 'show' ? 'hide' : 'show');
 
   const listenScrollEvent = () => {
     if (window.scrollY < 73) {
@@ -90,13 +93,14 @@ const Portfolio = () => {
         </style>
       </Helmet>
       <ThemeToggleSetting />
-      <Header darkMode={theme} bg={header}>
+      {/* ---- navigation section */}
+      <Header darkMode={theme} bg={header} mobnav={mobNav}>
         <div className='container'>
-          <nav className='d-flex justify-content-between'>
+          <nav className='d-flex justify-content-between align-items-center'>
             <Link to='/' className='logo'>
               Logo
             </Link>
-            <ul className='list-unstyled d-flex justify-content-end m-0'>
+            <ul className='list-unstyled d-none d-md-flex justify-content-end m-0'>
               <li>
                 <Link to='' onClick={() => window.location.replace('/#hero')}>
                   Home
@@ -123,11 +127,45 @@ const Portfolio = () => {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link to='/logout'>Logout</Link>
+              </li>
             </ul>
+            <div className='toggle d-block d-md-none' onClick={handleToggleNav}>
+              <i className='fas fa-bars'></i>
+            </div>
           </nav>
         </div>
       </Header>
-      <HeroSection darkMode={theme} id='hero'>
+      <section className='mobile_nav'>
+        <ul className='nav_content'>
+          <li>
+            <Link to='' onClick={() => window.location.replace('/#hero')}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to='' onClick={() => window.location.replace('/#about')}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to='' onClick={() => window.location.replace('/#projects')}>
+              Projects
+            </Link>
+          </li>
+          <li>
+            <Link to='' onClick={() => window.location.replace('/#contact')}>
+              Contact
+            </Link>
+          </li>
+          <li>
+            <Link to='/logout'>Logout</Link>
+          </li>
+        </ul>
+      </section>
+      {/* ---- navigation section end ---- */}
+      <HeroSection darkMode={darkmode} id='hero'>
         <HeroBgSlider
           images={[image1, image2, image3]}
           duration={3}

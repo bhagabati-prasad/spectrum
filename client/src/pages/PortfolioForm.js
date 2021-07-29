@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { ThemeContext } from '../components/ThemeContext';
+import { UserContext } from '../components/UserContext';
 import ThemeToggleSetting from '../components/ThemeToggleSetting';
 import {
   InputGroupBox,
@@ -12,6 +13,8 @@ import {
 
 const PortfolioForm = () => {
   const { theme } = useContext(ThemeContext);
+  const { userInfo, setUserInfo } = useContext(UserContext);
+  console.log(userInfo);
 
   const [errMsg, setErrMsg] = useState('');
 
@@ -109,19 +112,13 @@ const PortfolioForm = () => {
   // on submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log({
-    //   ...user,
-    //   social: { ...social },
-    //   education: [...education],
-    //   language: { ...language },
-    //   projects: [...project],
-    // });
     try {
+      const token = localStorage.getItem('auth-token');
       const res = await axios.patch(
         'api/user/update',
         { user, social, education, language, project },
         {
-          // headers: { 'user-id': user.userData._id },
+          headers: { 'auth-token': token },
         }
       );
       if (res.data?.error) {
