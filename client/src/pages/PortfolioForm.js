@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { ThemeContext } from '../components/ThemeContext';
@@ -12,6 +13,8 @@ import {
 const PortfolioForm = () => {
   const { theme } = useContext(ThemeContext);
 
+  const [errMsg, setErrMsg] = useState('');
+
   // user basic info form
   const [user, setUser] = useState({
     fname: '',
@@ -23,7 +26,7 @@ const PortfolioForm = () => {
     email: '',
     phone: '',
     domain: '',
-    bio: '',
+    about: '',
     address: '',
   });
 
@@ -88,8 +91,8 @@ const PortfolioForm = () => {
 
   // project form
   const [project, setProject] = useState([
-    { title: '', description: '' },
-    { title: '', description: '' },
+    { title: '', description: '', link: '' },
+    { title: '', description: '', link: '' },
   ]);
 
   const handleProjectChange = (index, event) => {
@@ -104,15 +107,31 @@ const PortfolioForm = () => {
   };
 
   // on submit form
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({
-      ...user,
-      social: { ...social },
-      education: [...education],
-      language: { ...language },
-      projects: [...project],
-    });
+    // console.log({
+    //   ...user,
+    //   social: { ...social },
+    //   education: [...education],
+    //   language: { ...language },
+    //   projects: [...project],
+    // });
+    try {
+      const res = await axios.patch(
+        'api/user/update',
+        { user, social, education, language, project },
+        {
+          // headers: { 'user-id': user.userData._id },
+        }
+      );
+      if (res.data?.error) {
+        setErrMsg(res.data.error);
+      } else {
+        console.log(res.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -254,11 +273,11 @@ const PortfolioForm = () => {
                   />
                 </SingleInputBox>
                 <SingleInputBox className='col-12 col-md-6'>
-                  <label htmlFor='bio'>About yourself*</label>
+                  <label htmlFor='about'>About yourself*</label>
                   <textarea
-                    name='bio'
-                    id='bio'
-                    value={user.bio}
+                    name='about'
+                    id='about'
+                    value={user.about}
                     onChange={handleUserChange}
                   ></textarea>
                 </SingleInputBox>
@@ -562,6 +581,17 @@ const PortfolioForm = () => {
                         onChange={(event) => handleProjectChange(index, event)}
                       ></textarea>
                     </SingleInputBox>
+                    <SingleInputBox className='col-12'>
+                      <label htmlFor='pro-link'>Project Link *</label>
+                      <input
+                        type='text'
+                        name='link'
+                        id='pro-link'
+                        required
+                        value={field.link}
+                        onChange={(event) => handleProjectChange(index, event)}
+                      />
+                    </SingleInputBox>
                   </div>
                 ))}
                 <div className='d-flex justify-content-end py-3'>
@@ -577,6 +607,7 @@ const PortfolioForm = () => {
             {/* ---- programming languages ---- */}
             <InputGroupBox darkMode={theme} className='py-3'>
               <div className='row'>
+                <p className='text-danger'>{errMsg}</p>
                 <div className='col-12 col-md-6'>
                   <button type='reset'>Clear form</button>
                 </div>

@@ -116,7 +116,7 @@ export const FormSection = styled.div`
           outline: none;
           padding: 0.3rem 0.9rem;
           border-radius: 3rem;
-          margin: 1rem 0;
+          margin: 0.7rem 0;
           transition: all 0.24s;
           &:hover {
             background: ${defaults.primary_color + 98};

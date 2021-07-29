@@ -1,16 +1,19 @@
 import { useContext, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { LoginSection, FormSection } from '../styles/LoginStyles';
 import WaveBackground from '../components/WaveBackground';
 import { ThemeContext } from '../components/ThemeContext';
 import { dark_theme, light_theme } from '../styles/_variables';
 import ThemeToggleSetting from '../components/ThemeToggleSetting';
+import axios from 'axios';
 
 const Login = () => {
+  const history = useHistory();
   const { theme } = useContext(ThemeContext);
 
   const [darkmode, setDarkmode] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const [login, setLogin] = useState({
     email: '',
@@ -20,9 +23,22 @@ const Login = () => {
   const handleChange = (e) =>
     setLogin({ ...login, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(login);
+    try {
+      const res = await axios.post('/api/login', {
+        ...login,
+      });
+      if (res.data?.error) {
+        setErrorMsg(res.data.error);
+      } else {
+        setErrorMsg('');
+        localStorage.setItem('auth-token', res.data.token);
+        history.push('/edit');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // toggle body background
@@ -76,15 +92,7 @@ const Login = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className='form_row flex-row align-items-center'>
-                <input
-                  className='form-check-input'
-                  type='checkbox'
-                  name='remember_me'
-                  id='chkbox'
-                ></input>
-                <label htmlFor='chkbox'>Remember me.</label>
-              </div>
+              <p className='text-danger m-0'>{errorMsg}</p>
               <div className='form_row'>
                 <button type='submit'>Log in</button>
               </div>

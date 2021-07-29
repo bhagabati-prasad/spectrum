@@ -1,16 +1,20 @@
 import { useContext, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { FormSection, SignupSection } from '../styles/SignupStyles';
 import WaveBackground from '../components/WaveBackground';
 import { ThemeContext } from '../components/ThemeContext';
 import { dark_theme, light_theme } from '../styles/_variables';
 import ThemeToggleSetting from '../components/ThemeToggleSetting';
+import axios from 'axios';
 
 const Signup = () => {
+  const history = useHistory();
   const { theme } = useContext(ThemeContext);
 
   const [darkmode, setDarkmode] = useState('');
+  const [term, setTerm] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const [signup, setSignup] = useState({
     fname: '',
@@ -18,17 +22,36 @@ const Signup = () => {
     lname: '',
     email: '',
     phone: '',
-    domain: '',
-    address: '',
     password: '',
+    conPassword: '',
   });
 
   const handleChange = (e) =>
     setSignup({ ...signup, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(signup);
+    try {
+      if (term) {
+        if (signup.password === signup.conPassword) {
+          const res = await axios.post('/api/signup', { ...signup });
+          if (res.data?.error) {
+            setErrorMsg(res.data.error);
+          } else {
+            setErrorMsg('');
+            console.log(res.data);
+            localStorage.setItem('auth-token', res.data.token);
+            history.push('/edit');
+          }
+        } else {
+          setErrorMsg("Password didn't match.");
+        }
+      } else {
+        setErrorMsg('Accept T&C.');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // toggle body background
@@ -114,47 +137,21 @@ const Signup = () => {
               </div>
               <div className='d-flex flex-column flex-md-row justify-content-between'>
                 <div className='form_box'>
-                  <label htmlFor='domain'>Domain *</label>
-                  <input
-                    type='text'
-                    name='domain'
-                    id='domain'
-                    placeholder='e.g: UI/UX, Web Design, Mobile App Design'
-                    required
-                    value={signup.domain}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className='d-flex flex-column flex-md-row justify-content-between'>
-                <div className='form_box'>
-                  <label htmlFor='address'>Address *</label>
-                  <input
-                    type='text'
-                    name='address'
-                    id='address'
-                    placeholder='Plot, street, area, city, state, pincode'
-                    required
-                    value={signup.address}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className='d-flex flex-column flex-md-row justify-content-between'>
-                <div className='form_box'>
                   <label htmlFor='email'>Email *</label>
                   <input
                     type='email'
                     name='email'
                     id='email'
                     placeholder='e.g: name@email.com'
-                    pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})'
+                    pattern='[A-Za-z0-9._%+-]{2,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})'
                     title='Invalid format'
                     required
                     value={signup.email}
                     onChange={handleChange}
                   />
                 </div>
+              </div>
+              <div className='d-flex flex-column flex-md-row justify-content-between'>
                 <div className='form_box'>
                   <label htmlFor='password'>Password *</label>
                   <input
@@ -168,8 +165,34 @@ const Signup = () => {
                     onChange={handleChange}
                   />
                 </div>
+                <div className='form_box'>
+                  <label htmlFor='con-password'>Confirm Password *</label>
+                  <input
+                    type='text'
+                    name='conPassword'
+                    minLength='6'
+                    placeholder='minimum 6 character long'
+                    id='con-password'
+                    required
+                    value={signup.conPassword}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
-              <p className='err_msg text-danger mt-3'></p>
+              <div className='mt-3'>
+                <input
+                  type='checkbox'
+                  id='check'
+                  defaultChecked={term}
+                  defaultChecked={term}
+                  onClick={() => setTerm(!term)}
+                  required
+                />
+                <label htmlFor='check' className='ms-2'>
+                  Accept our T&C.
+                </label>
+              </div>
+              <p className='text-danger mt-3'>{errorMsg}</p>
               <div className='form_box'>
                 <button type='submit'>Register</button>
               </div>

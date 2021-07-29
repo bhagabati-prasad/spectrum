@@ -98,22 +98,28 @@ const Portfolio = () => {
             </Link>
             <ul className='list-unstyled d-flex justify-content-end m-0'>
               <li>
-                <Link onClick={() => window.location.replace('/#hero')}>
+                <Link to='' onClick={() => window.location.replace('/#hero')}>
                   Home
                 </Link>
               </li>
               <li>
-                <Link onClick={() => window.location.replace('/#about')}>
+                <Link to='' onClick={() => window.location.replace('/#about')}>
                   About
                 </Link>
               </li>
               <li>
-                <Link onClick={() => window.location.replace('/#projects')}>
+                <Link
+                  to=''
+                  onClick={() => window.location.replace('/#projects')}
+                >
                   Projects
                 </Link>
               </li>
               <li>
-                <Link onClick={() => window.location.replace('/#contact')}>
+                <Link
+                  to=''
+                  onClick={() => window.location.replace('/#contact')}
+                >
                   Contact
                 </Link>
               </li>
