@@ -35,9 +35,30 @@ const Portfolio = () => {
   const [darkmode, setDarkmode] = useState('');
   const [header, setHeader] = useState('true');
   const [mobNav, setMobNav] = useState('hide');
+  const [conMsg, setConMsg] = useState('');
 
   const { theme } = useContext(ThemeContext);
   const { userInfo, setUserInfo } = useContext(UserContext);
+
+  const [contact, setContact] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+
+  const handleChange = (e) =>
+    setContact({ ...contact, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log({ contact });
+    const res = await axios.post('/api/contact', { ...contact });
+    if (res.data.message) {
+      setConMsg(res.data.message);
+      setContact({ name: '', email: '', phone: '', message: '' });
+    }
+  };
 
   const options = {
     loop: true,
@@ -473,30 +494,42 @@ const Portfolio = () => {
             <div className='col-12 col-lg-4'>
               <div className='form_box shadow'>
                 <p>Drop a message</p>
-                <form action='' method='POST'>
+                <form method='POST' onSubmit={handleSubmit}>
                   <div className='input_fields'>
                     <input
                       type='text'
                       name='name'
                       placeholder='Name'
                       required
+                      value={contact.name}
+                      onChange={handleChange}
                     />
                     <input
                       type='email'
                       name='email'
                       placeholder='E-mail'
                       required
+                      value={contact.email}
+                      onChange={handleChange}
                     />
                     <input
                       type='text'
                       name='phone'
                       placeholder='Phone'
                       required
+                      value={contact.phone}
+                      onChange={handleChange}
                     />
-                    <textarea name='message' placeholder='Message'></textarea>
+                    <textarea
+                      name='message'
+                      maxLength='250'
+                      placeholder='Message'
+                      value={contact.message}
+                      onChange={handleChange}
+                    ></textarea>
                   </div>
                   <div className='buttons'>
-                    <input type='file' name='file' />
+                    <p className='text-success m-0'>{conMsg}</p>
                     <button type='submit'>Send message</button>
                   </div>
                 </form>
