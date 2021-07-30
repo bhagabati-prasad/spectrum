@@ -4,7 +4,18 @@ module.exports = async (req, res) => {
   try {
     const ifUser = await User.find({ email: req.body.email });
     if (!ifUser.length) {
-      const registerUser = new User({ ...req.body });
+      const registerUser = new User({
+        ...req.body,
+        language: {
+          speaking: '',
+          frameworks: '',
+          skills: [{ name: '', rating: '' }],
+        },
+        project: [
+          { title: '', description: '', link: '' },
+          { title: '', description: '', link: '' },
+        ],
+      });
       // create token
       const token = await registerUser.generateToken();
       // create new user

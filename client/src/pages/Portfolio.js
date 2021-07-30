@@ -80,7 +80,6 @@ const Portfolio = () => {
         const res = await axios.post('/api/getuser', { token });
         if (res.data.user) {
           setUserInfo({ ...res.data.user });
-          console.log(res.data.user);
         }
       }
     };

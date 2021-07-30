@@ -15,8 +15,6 @@ const userSchema = new Schema({
   domain: String,
   about: String,
   address: String,
-  // cv: String,
-  // pic: String,
   social: {
     facebook: String,
     instagram: String,

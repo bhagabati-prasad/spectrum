@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { ThemeContext } from '../components/ThemeContext';
 import { UserContext } from '../components/UserContext';
@@ -14,6 +14,7 @@ import {
 import { Header } from '../styles/PortfolioStyles';
 
 const PortfolioForm = () => {
+  const history = useHistory();
   const { theme } = useContext(ThemeContext);
   const { userInfo, setUserInfo } = useContext(UserContext);
 
@@ -134,6 +135,7 @@ const PortfolioForm = () => {
           console.log(res.data);
           setUserInfo({ ...res.data.user });
           setSuccessMsg('Profile updated successfully!');
+          history.push('/');
         }
       } else {
         setErrMsg('you need a token');
@@ -145,11 +147,9 @@ const PortfolioForm = () => {
 
   useEffect(() => {
     const getUser = async () => {
-      console.log('getuser');
       const token = localStorage.getItem('auth-token');
       if (token) {
         const res = await axios.post('/api/getuser', { token });
-        console.log(res);
         setUserInfo({ ...res.data.user });
       }
     };
@@ -157,7 +157,6 @@ const PortfolioForm = () => {
   }, []);
   useEffect(() => {
     if (Object.keys(userInfo).length) {
-      console.log(Object.keys(userInfo).length);
       setUser({
         fname: userInfo?.fname,
         mname: userInfo?.mname,
@@ -179,9 +178,30 @@ const PortfolioForm = () => {
         github: userInfo?.social?.github,
         website: userInfo?.social?.website,
       });
-      setEducation(Object.values(userInfo?.education));
+      setEducation([
+        {
+          from: userInfo?.education?.edu1?.from,
+          to: userInfo?.education?.edu1?.to,
+          college: userInfo?.education?.edu1?.college,
+          branch: userInfo?.education?.edu1?.branch,
+        },
+        {
+          from: userInfo?.education?.edu2?.from,
+          to: userInfo?.education?.edu2?.to,
+          college: userInfo?.education?.edu2?.college,
+          branch: userInfo?.education?.edu2?.branch,
+        },
+        {
+          from: userInfo?.education?.edu3?.from,
+          to: userInfo?.education?.edu3?.to,
+          college: userInfo?.education?.edu3?.college,
+          branch: userInfo?.education?.edu3?.branch,
+        },
+      ]);
       setLanguage({
-        ...userInfo?.language,
+        speaking: userInfo?.language.speaking,
+        frameworks: userInfo?.language.frameworks,
+        skills: [...userInfo?.language?.skills],
       });
       setProject(userInfo?.project);
     }
@@ -380,14 +400,6 @@ const PortfolioForm = () => {
                         value={user.address}
                         onChange={handleUserChange}
                       />
-                    </SingleInputBox>
-                    <SingleInputBox className='col-12 col-md-6'>
-                      <label htmlFor='resume'>CV / Resume</label>
-                      <input type='file' name='resume' id='resume' />
-                    </SingleInputBox>
-                    <SingleInputBox className='col-12 col-md-6'>
-                      <label htmlFor='picture'>Profile picture</label>
-                      <input type='file' name='picture' id='picture' />
                     </SingleInputBox>
                   </div>
                 </div>
