@@ -11,6 +11,12 @@ import axios from 'axios';
 
 const Signup = () => {
   const history = useHistory();
+  useEffect(() => {
+    if (localStorage.getItem('auth-token')) {
+      history.push('/edit');
+    }
+  });
+
   const { theme } = useContext(ThemeContext);
   const { setUserInfo } = useContext(UserContext);
 

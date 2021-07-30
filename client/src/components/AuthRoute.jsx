@@ -1,14 +1,14 @@
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
-const AuthRoute = ({ page, ...rest }) => (
+const AuthRoute = ({ page: Page, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
       const token = localStorage.getItem('auth-token');
       if (token) {
-        return <Redirect to='/edit' />;
+        return <Page {...props} />;
       } else {
-        return withRouter(<page {...props} />);
+        return <Redirect to={{ pathname: '/login' }} />;
       }
     }}
   />

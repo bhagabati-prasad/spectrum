@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { LoginSection, FormSection } from '../styles/LoginStyles';
 import WaveBackground from '../components/WaveBackground';
 import { ThemeContext } from '../components/ThemeContext';
@@ -11,6 +11,11 @@ import axios from 'axios';
 
 const Login = () => {
   const history = useHistory();
+  useEffect(() => {
+    if (localStorage.getItem('auth-token')) {
+      history.push('/edit');
+    }
+  });
   const { theme } = useContext(ThemeContext);
   const { setUserInfo } = useContext(UserContext);
   const [darkmode, setDarkmode] = useState('');
