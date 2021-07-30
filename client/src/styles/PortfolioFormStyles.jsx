@@ -4,7 +4,7 @@ import { dark_theme, defaults, light_theme } from './_variables';
 export const PortfolioFormSection = styled.section`
   position: relative;
   min-height: 100vh;
-  padding: 4rem 0;
+  padding: 4rem 0 2rem 0;
   background-color: ${light_theme.portfolio_body_bg};
   ${({ darkMode }) =>
     darkMode === 'dark' &&

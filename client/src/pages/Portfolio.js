@@ -18,6 +18,7 @@ import Typewriter from 'typewriter-effect';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { ThemeContext } from '../components/ThemeContext';
+import { UserContext } from '../components/UserContext';
 
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
@@ -28,13 +29,15 @@ import image2 from '../assets/herobg2.jpg';
 import image3 from '../assets/herobg3.jpg';
 import { dark_theme, light_theme } from '../styles/_variables';
 import ThemeToggleSetting from '../components/ThemeToggleSetting';
+import axios from 'axios';
 
 const Portfolio = () => {
-  const [header, setHeader] = useState('true');
   const [darkmode, setDarkmode] = useState('');
-  const [mobNav, setMobNav] = useState('show');
+  const [header, setHeader] = useState('true');
+  const [mobNav, setMobNav] = useState('hide');
 
   const { theme } = useContext(ThemeContext);
+  const { userInfo, setUserInfo } = useContext(UserContext);
 
   const options = {
     loop: true,
@@ -67,8 +70,21 @@ const Portfolio = () => {
   // change navbar background on scroll
   useEffect(() => {
     window.addEventListener('scroll', listenScrollEvent);
-
     return () => window.removeEventListener('scroll', listenScrollEvent);
+  }, []);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const token = localStorage.getItem('auth-token');
+      if (token) {
+        const res = await axios.post('/api/getuser', { token });
+        if (res.data.user) {
+          setUserInfo({ ...res.data.user });
+          console.log(res.data.user);
+        }
+      }
+    };
+    getUser();
   }, []);
 
   // toggle body background
@@ -140,22 +156,46 @@ const Portfolio = () => {
       <section className='mobile_nav'>
         <ul className='nav_content'>
           <li>
-            <Link to='' onClick={() => window.location.replace('/#hero')}>
+            <Link
+              to=''
+              onClick={() => {
+                handleToggleNav();
+                window.location.replace('/#hero');
+              }}
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link to='' onClick={() => window.location.replace('/#about')}>
+            <Link
+              to=''
+              onClick={() => {
+                handleToggleNav();
+                window.location.replace('/#about');
+              }}
+            >
               About
             </Link>
           </li>
           <li>
-            <Link to='' onClick={() => window.location.replace('/#projects')}>
+            <Link
+              to=''
+              onClick={() => {
+                handleToggleNav();
+                window.location.replace('/#projects');
+              }}
+            >
               Projects
             </Link>
           </li>
           <li>
-            <Link to='' onClick={() => window.location.replace('/#contact')}>
+            <Link
+              to=''
+              onClick={() => {
+                handleToggleNav();
+                window.location.replace('/#contact');
+              }}
+            >
               Contact
             </Link>
           </li>
@@ -175,11 +215,13 @@ const Portfolio = () => {
           <div className='content'>
             <div className='title'>
               <h4>Hi. I'm</h4>
-              <h1 className='name'>John Doe</h1>
+              <h1 className='name'>
+                {userInfo?.fname} {userInfo?.lname}
+              </h1>
               <div className='line'></div>
               <div className='domain'>
                 <h3>
-                  I'm A
+                  I'm A {userInfo?.fname}
                   <Typewriter
                     options={{
                       strings: ['Web developer', 'UI/UX designer'],
@@ -191,17 +233,41 @@ const Portfolio = () => {
               </div>
             </div>
             <div className='soc_icon'>
-              <Link to='/' className='ml-0' target='_blank' rel='noopener'>
+              <Link
+                to={`https://www.facebook.com/${userInfo?.social?.facebook}`}
+                className='ml-0'
+                target='_blank'
+                rel='noopener'
+              >
                 <i className='fab fa-facebook-f'></i>
               </Link>
-              <Link to='/' target='_blank' rel='noopener'>
+              <Link
+                to={`https://twitter.com/${userInfo?.social?.twitter}`}
+                target='_blank'
+                rel='noopener'
+              >
                 <i className='fab fa-twitter'></i>
               </Link>
-              <Link to='/' target='_blank' rel='noopener'>
+              <Link
+                to={`https://www.instagram.com/${userInfo?.social?.instagram}`}
+                target='_blank'
+                rel='noopener'
+              >
                 <i className='fab fa-instagram'></i>
               </Link>
-              <Link to='/' target='_blank' rel='noopener'>
+              <Link
+                to={`https://www.linkedin.com/in/${userInfo?.social?.linkedin}`}
+                target='_blank'
+                rel='noopener'
+              >
                 <i className='fab fa-linkedin-in'></i>
+              </Link>
+              <Link
+                to={`https://www.github.com/in/${userInfo?.social?.linkedin}`}
+                target='_blank'
+                rel='noopener'
+              >
+                <i className='fab fa-github'></i>
               </Link>
             </div>
           </div>
@@ -212,12 +278,7 @@ const Portfolio = () => {
           <div className='row'>
             <div className='content col-12 col-md-6'>
               <SectionHeading darkMode={theme} fill='About ' span='me' />
-              <Description>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Exercitationem culpa esse temporibus voluptates id nam! Neque
-                dignissimos doloremque rerum hic optio accusantium placeat
-                adipisci ad. Eaque, fuga qui? Quasi, laudantium!
-              </Description>
+              <Description>{userInfo?.about}</Description>
               <Link to='/'>Download CV</Link>
             </div>
             <div className='image col-12 col-md-6 py-3 d-flex justify-content-end'>
@@ -238,45 +299,43 @@ const Portfolio = () => {
               <ul className='list-unstyled'>
                 <li>
                   <span className='key'>First name :</span>
-                  <span className='value'>John</span>
+                  <span className='value'>{userInfo?.fname}</span>
                 </li>
                 <li>
                   <span className='key'>Middle name :</span>
-                  <span className='value'>John</span>
+                  <span className='value'>{userInfo?.mname}</span>
                 </li>
                 <li>
                   <span className='key'>Last name :</span>
-                  <span className='value'>John</span>
+                  <span className='value'>{userInfo?.lname}</span>
                 </li>
                 <li>
                   <span className='key'>Gender :</span>
-                  <span className='value'>Male</span>
+                  <span className='value'>{userInfo?.gender}</span>
                 </li>
                 <li>
                   <span className='key'>Age :</span>
-                  <span className='value'>22</span>
+                  <span className='value'>{userInfo?.age}</span>
                 </li>
                 <li>
                   <span className='key'>Email :</span>
-                  <span className='value'>john@abc.com</span>
+                  <span className='value'>{userInfo?.email}</span>
                 </li>
                 <li>
                   <span className='key'>Mobile :</span>
-                  <span className='value'>+91 - 123 456 7890</span>
+                  <span className='value'>{userInfo?.phone}</span>
                 </li>
                 <li>
                   <span className='key'>LinkedIn :</span>
-                  <span className='value'>john-doe</span>
+                  <span className='value'>{userInfo?.social?.linkedin}</span>
                 </li>
                 <li>
                   <span className='key'>GitHub :</span>
-                  <span className='value'>john-doe</span>
+                  <span className='value'>{userInfo?.social?.github}</span>
                 </li>
                 <li>
                   <span className='key'>Address :</span>
-                  <span className='value'>
-                    Bhubaneswar, Odisha, India, 751030
-                  </span>
+                  <span className='value'>{userInfo?.address}</span>
                 </li>
               </ul>
             </div>
@@ -292,54 +351,84 @@ const Portfolio = () => {
             <h2>Education</h2>
             <ul>
               <li className='education_box'>
-                <p className='duration'>2019-2022</p>
-                <p className='clg'>CET, Bhubaneswar</p>
-                <p className='branch'>M.C.A</p>
+                <p className='duration'>
+                  {userInfo?.education?.edu1.from} -{' '}
+                  {userInfo?.education?.edu1.to}
+                </p>
+                <p className='clg'>{userInfo?.education?.edu1.college}</p>
+                <p className='branch'>{userInfo?.education?.edu1.branch}</p>
               </li>
               <li className='education_box'>
-                <p className='duration'>2019-2022</p>
-                <p className='clg'>CET, Bhubaneswar</p>
-                <p className='branch'>M.C.A</p>
+                <p className='duration'>
+                  {userInfo?.education?.edu2.from} -{' '}
+                  {userInfo?.education?.edu2.to}
+                </p>
+                <p className='clg'>{userInfo?.education?.edu2.college}</p>
+                <p className='branch'>{userInfo?.education?.edu2.branch}</p>
               </li>
               <li className='education_box'>
-                <p className='duration'>2019-2022</p>
-                <p className='clg'>CET, Bhubaneswar</p>
-                <p className='branch'>M.C.A</p>
+                <p className='duration'>
+                  {userInfo?.education?.edu3.from} -{' '}
+                  {userInfo?.education?.edu3.to}
+                </p>
+                <p className='clg'>{userInfo?.education?.edu3.college}</p>
+                <p className='branch'>{userInfo?.education?.edu3.branch}</p>
               </li>
             </ul>
           </div>
           <div className='row py-4 skills'>
-            <h2>Programming Skill</h2>
-            <div className='skill_wrapper'>
-              <div style={{ width: 120, height: 120 }}>
-                <CircularProgressbar
-                  value={50}
-                  text='HTML'
-                  styles={buildStyles({
-                    // Text size
-                    textSize: '16px',
-                    // Colors
-                    pathColor: '#8c0',
-                    textColor: '#f00',
-                    trailColor: '#d6d6d6',
-                    backgroundColor: '#3e98c7',
-                  })}
-                />
+            <div className='col-12 col-md-6'>
+              <h2>Programming Skill</h2>
+              <div className='skill_wrapper'>
+                {userInfo?.language?.skills.map((skill, index) => (
+                  <div
+                    style={{
+                      width: 120,
+                      height: 120,
+                      margin: '1rem',
+                      textTransform: 'capitalize',
+                    }}
+                    key={index}
+                  >
+                    <CircularProgressbar
+                      value={skill?.rating * 10}
+                      text={skill?.name}
+                      styles={buildStyles({
+                        // Text size
+                        textSize: '14px',
+                        // Colors
+                        pathColor: '#444',
+                        textColor: '#1e90ff',
+                        trailColor: '#d6d6d6',
+                        backgroundColor: '#3e98c7',
+                      })}
+                    />
+                  </div>
+                ))}
               </div>
-              <div style={{ width: 120, height: 120 }}>
-                <CircularProgressbar
-                  value={50}
-                  text='HTML'
-                  styles={buildStyles({
-                    // Text size
-                    textSize: '16px',
-                    // Colors
-                    pathColor: '#8c0',
-                    textColor: '#f00',
-                    trailColor: '#d6d6d6',
-                    backgroundColor: '#3e98c7',
-                  })}
-                />
+            </div>
+            <div className='col-12 col-md-6'>
+              <div className='pb-4'>
+                <h2>Frameworks</h2>
+                <div className='d-flex flex-wrap'>
+                  {userInfo?.language?.frameworks
+                    .split(',')
+                    .map((frmk, indx) => (
+                      <div className='skill_block' key={indx}>
+                        {frmk}
+                      </div>
+                    ))}
+                </div>
+              </div>
+              <div className='py-2'>
+                <h2>Speaking</h2>
+                <div className='d-flex flex-wrap'>
+                  {userInfo?.language?.speaking.split(',').map((lang, indx) => (
+                    <div className='skill_block' key={indx}>
+                      {lang}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -352,54 +441,26 @@ const Portfolio = () => {
           </div>
           <div className='row'>
             <OwlCarousel className='owl-theme' {...options}>
-              <div className='item'>
-                <div className='single_project card'>
-                  <div className='image'>
-                    <img src='./images/project1.png' />
+              {userInfo?.project &&
+                userInfo?.project.map((proj, index) => (
+                  <div className='item' key={index}>
+                    <div className='single_project card'>
+                      <div className='image'>
+                        <img src='./images/project1.png' />
+                      </div>
+                      <div className='body'>
+                        <h1 className='display-4'>
+                          {index < 10 ? `0${index + 1}` : `${index + 1}`}
+                        </h1>
+                        <h3>{proj.title}</h3>
+                        <p>{proj.description}</p>
+                        <Link to={proj.link} target='_blank' rel='noopener'>
+                          View Project
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                  <div className='body'>
-                    <h1 className='display-4'>01</h1>
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Laudantium officiis asperiores velit.
-                    </p>
-                    <Link to='/'>View Project</Link>
-                  </div>
-                </div>
-              </div>
-              <div className='item'>
-                <div className='single_project card'>
-                  <div className='image'>
-                    <img src='./images/project1.png' />
-                  </div>
-                  <div className='body'>
-                    <h1 className='display-4'>01</h1>
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Laudantium officiis asperiores velit.
-                    </p>
-                    <Link to='/'>View Project</Link>
-                  </div>
-                </div>
-              </div>
-              <div className='item'>
-                <div className='single_project card'>
-                  <div className='image'>
-                    <img src='./images/project1.png' />
-                  </div>
-                  <div className='body'>
-                    <h1 className='display-4'>01</h1>
-                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Laudantium officiis asperiores velit.
-                    </p>
-                    <Link to='/'>View Project</Link>
-                  </div>
-                </div>
-              </div>
+                ))}
             </OwlCarousel>
           </div>
         </div>
@@ -459,8 +520,8 @@ const Portfolio = () => {
             </div>
             <div className='single_box col-12 col-md-4'>
               <h4>Contact</h4>
-              <p>yourname@abc.com</p>
-              <p>+91 - 132 456 7890</p>
+              <p>{userInfo.email}</p>
+              <p>{userInfo.phone}</p>
             </div>
             <div
               className='

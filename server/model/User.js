@@ -50,7 +50,7 @@ const userSchema = new Schema({
     frameworks: String,
     skills: [{ name: String, rating: String }],
   },
-  project: [{ title: String, desccription: String, link: String }],
+  project: [{ title: String, description: String, link: String }],
 });
 
 userSchema.methods.generateToken = async function () {

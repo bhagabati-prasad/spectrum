@@ -64,14 +64,10 @@ router.patch('/user/update', async (req, res) => {
             ...req.body.education[2],
           },
         },
-        language: {
-          speaking: req.body.language.speaking,
-          frameworks: req.body.language.frameworks,
-          skills: [...req.body.language.skills],
-        },
+        language: { ...req.body.language },
         project: [...req.body.project],
       };
-      const updateUser = await User.findByIdAndUpdate(decoded._id, data, {
+      const updateUser = await User.findByIdAndUpdate(decoded.id, data, {
         new: true,
       });
       res.json({ isLoggedIn: true, user: updateUser });
@@ -81,6 +77,21 @@ router.patch('/user/update', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error });
+  }
+});
+
+router.post('/getuser', async (req, res) => {
+  const reqToken = req.body.token;
+  if (reqToken) {
+    const decoded = jwt.verify(reqToken, process.env.SECRET_TOKEN);
+    if (decoded) {
+      const user = await User.findById(decoded.id);
+      console.log(user);
+      res.json({ user });
+    }
+    res.json({ error: 'invalid token' });
+  } else {
+    res.json({ error: 'no token found' });
   }
 });
 

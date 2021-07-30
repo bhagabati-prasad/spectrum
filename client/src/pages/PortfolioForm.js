@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { ThemeContext } from '../components/ThemeContext';
 import { UserContext } from '../components/UserContext';
@@ -10,11 +11,15 @@ import {
   PortfolioFormSection,
   SingleInputBox,
 } from '../styles/PortfolioFormStyles';
+import { Header } from '../styles/PortfolioStyles';
 
 const PortfolioForm = () => {
   const { theme } = useContext(ThemeContext);
   const { userInfo, setUserInfo } = useContext(UserContext);
-  console.log(userInfo);
+
+  // navbar
+  const [mobNav, setMobNav] = useState('hide');
+  const handleToggleNav = () => setMobNav(mobNav === 'show' ? 'hide' : 'show');
 
   const [errMsg, setErrMsg] = useState('');
 
@@ -114,34 +119,115 @@ const PortfolioForm = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('auth-token');
-      const res = await axios.patch(
-        'api/user/update',
-        { user, social, education, language, project },
-        {
-          headers: { 'auth-token': token },
+      if (token) {
+        const res = await axios.patch(
+          'api/user/update',
+          { user, social, education, language, project },
+          {
+            headers: { 'auth-token': token },
+          }
+        );
+        if (res.data?.error) {
+          setErrMsg(res.data.error);
+        } else {
+          console.log(res.data);
+          setUserInfo({ ...res.data.user });
         }
-      );
-      if (res.data?.error) {
-        setErrMsg(res.data.error);
       } else {
-        console.log(res.data);
+        setErrMsg('you need a token');
       }
     } catch (error) {
       console.error(error);
     }
   };
 
+  useEffect(() => {
+    const getUser = async () => {
+      console.log('getuser');
+      const token = localStorage.getItem('auth-token');
+      if (token) {
+        const res = await axios.post('/api/getuser', { token });
+        console.log(res);
+        setUserInfo({ ...res.data.user });
+      }
+    };
+    getUser();
+  }, []);
+  useEffect(() => {
+    if (Object.keys(userInfo).length) {
+      console.log(Object.keys(userInfo).length);
+      setUser({
+        fname: userInfo?.fname,
+        mname: userInfo?.mname,
+        lname: userInfo?.lname,
+        dob: userInfo?.dob,
+        age: userInfo?.age,
+        gender: userInfo?.gender,
+        email: userInfo?.email,
+        phone: userInfo?.phone,
+        domain: userInfo?.domain,
+        about: userInfo?.about,
+        address: userInfo?.address,
+      });
+      setSocial({
+        facebook: userInfo?.social?.facebook,
+        instagram: userInfo?.social?.instagram,
+        twitter: userInfo?.social?.twitter,
+        linkedin: userInfo?.social?.linkedin,
+        github: userInfo?.social?.github,
+        website: userInfo?.social?.website,
+      });
+      setEducation(Object.values(userInfo?.education));
+      setLanguage({
+        ...userInfo?.language,
+      });
+      setProject(userInfo?.project);
+    }
+  }, [userInfo]);
+
   return (
     <>
       <Helmet>
         <title>Portfolio Form</title>
       </Helmet>
+      {/* ---- navigation section */}
+      <Header darkMode={theme} mobnav={mobNav}>
+        <div className='container'>
+          <nav className='d-flex justify-content-between align-items-center'>
+            <Link to='/' className='logo'>
+              Logo
+            </Link>
+            <ul className='list-unstyled d-none d-md-flex justify-content-end align-items-center m-0'>
+              <li>
+                <Link to='/'>Portfolio</Link>
+              </li>
+              <li>
+                <Link to='/logout'>Logout</Link>
+              </li>
+            </ul>
+            <div className='toggle d-block d-md-none' onClick={handleToggleNav}>
+              <i className='fas fa-bars'></i>
+            </div>
+          </nav>
+        </div>
+      </Header>
+      <section className='mobile_nav'>
+        <ul className='nav_content'>
+          <li>
+            <Link to='/'>Portfolio</Link>
+          </li>
+          <li>
+            <Link to='/logout'>Logout</Link>
+          </li>
+        </ul>
+      </section>
+      {/* ---- navigation section end ---- */}
       <PortfolioFormSection darkMode={theme}>
         <ThemeToggleSetting editBtn={false} />
         <div className='container'>
           <form method='POST' onSubmit={handleSubmit}>
             {/* ---- basic info ---- */}
-            <InputGroupBox darkMode={theme}>
+            <InputGroupBox darkMode={theme} id='profile'>
               <InputGroupHeading darkMode={theme}>
                 <h4>Details about</h4>
                 <h1>Your Profile</h1>

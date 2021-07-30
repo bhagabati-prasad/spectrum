@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { FormSection, SignupSection } from '../styles/SignupStyles';
 import WaveBackground from '../components/WaveBackground';
 import { ThemeContext } from '../components/ThemeContext';
+import { UserContext } from '../components/UserContext';
 import { dark_theme, light_theme } from '../styles/_variables';
 import ThemeToggleSetting from '../components/ThemeToggleSetting';
 import axios from 'axios';
@@ -11,6 +12,7 @@ import axios from 'axios';
 const Signup = () => {
   const history = useHistory();
   const { theme } = useContext(ThemeContext);
+  const { setUserInfo } = useContext(UserContext);
 
   const [darkmode, setDarkmode] = useState('');
   const [term, setTerm] = useState(false);
@@ -39,7 +41,7 @@ const Signup = () => {
             setErrorMsg(res.data.error);
           } else {
             setErrorMsg('');
-            console.log(res.data);
+            setUserInfo({ ...res.data.user });
             localStorage.setItem('auth-token', res.data.token);
             history.push('/edit');
           }

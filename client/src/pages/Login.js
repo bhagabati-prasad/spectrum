@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { LoginSection, FormSection } from '../styles/LoginStyles';
 import WaveBackground from '../components/WaveBackground';
 import { ThemeContext } from '../components/ThemeContext';
+import { UserContext } from '../components/UserContext';
 import { dark_theme, light_theme } from '../styles/_variables';
 import ThemeToggleSetting from '../components/ThemeToggleSetting';
 import axios from 'axios';
@@ -11,7 +12,7 @@ import axios from 'axios';
 const Login = () => {
   const history = useHistory();
   const { theme } = useContext(ThemeContext);
-
+  const { setUserInfo } = useContext(UserContext);
   const [darkmode, setDarkmode] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -33,6 +34,7 @@ const Login = () => {
         setErrorMsg(res.data.error);
       } else {
         setErrorMsg('');
+        setUserInfo({ ...res.data.user });
         localStorage.setItem('auth-token', res.data.token);
         history.push('/edit');
       }

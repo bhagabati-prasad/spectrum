@@ -430,6 +430,19 @@ export const ResumeSection = styled(PaddedSection)`
           color: ${dark_theme.portfolio_op_body_bg};
         `}
     }
+    .skill_wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .skill_block {
+      display: inline-block;
+      padding: 0.3rem 0.7rem;
+      margin: 2px 4px;
+      border-radius: 4px;
+      text-transform: capitalize;
+      color: #fff;
+      background: #5f5f5e;
+    }
   }
 `;
 
