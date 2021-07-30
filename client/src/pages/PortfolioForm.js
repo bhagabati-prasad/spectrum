@@ -22,6 +22,7 @@ const PortfolioForm = () => {
   const handleToggleNav = () => setMobNav(mobNav === 'show' ? 'hide' : 'show');
 
   const [errMsg, setErrMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
   // user basic info form
   const [user, setUser] = useState({
@@ -132,6 +133,7 @@ const PortfolioForm = () => {
         } else {
           console.log(res.data);
           setUserInfo({ ...res.data.user });
+          setSuccessMsg('Profile updated successfully!');
         }
       } else {
         setErrMsg('you need a token');
@@ -691,6 +693,7 @@ const PortfolioForm = () => {
             <InputGroupBox darkMode={theme} className='py-3'>
               <div className='row'>
                 <p className='text-danger'>{errMsg}</p>
+                <p className='text-success'>{successMsg}</p>
                 <div className='col-12 col-md-6'>
                   <button type='reset'>Clear form</button>
                 </div>
