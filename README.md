@@ -14,7 +14,7 @@ As it's in development phase, first you need to download the project or clone th
 
 ### Run Server
 
-First install mongoDB database and create database named `portflix`.
+First install mongoDB database and create database named `spectrum` or you can create in any name and change the env variable `MONGO_URI` value.
 <br />
 Then go to server folder (./server) and open command panel to run the command to install node_modules:
 
