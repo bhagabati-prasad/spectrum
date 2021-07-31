@@ -134,7 +134,7 @@ const Portfolio = () => {
         <div className='container'>
           <nav className='d-flex justify-content-between align-items-center'>
             <Link to='/' className='logo'>
-              Logo
+              Portflix
             </Link>
             <ul className='list-unstyled d-none d-md-flex justify-content-end m-0'>
               <li>
@@ -542,7 +542,7 @@ const Portfolio = () => {
         <div className='container'>
           <div className='row'>
             <div className='single_box col-12 col-md-3'>
-              <h2 className='logo'>Logo</h2>
+              <h2 className='logo'>Portflix</h2>
               <p>Copyright &copy; 2021 Logo.</p>
             </div>
             <div className='single_box col-12 col-md-3'>

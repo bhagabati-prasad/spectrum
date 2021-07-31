@@ -217,7 +217,7 @@ const PortfolioForm = () => {
         <div className='container'>
           <nav className='d-flex justify-content-between align-items-center'>
             <Link to='/' className='logo'>
-              Logo
+              Portflix
             </Link>
             <ul className='list-unstyled d-none d-md-flex justify-content-end align-items-center m-0'>
               <li>

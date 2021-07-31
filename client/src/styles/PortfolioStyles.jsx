@@ -43,7 +43,7 @@ export const Header = styled.header`
       color: ${light_theme.portfolio_op_body_bg};
       font-size: 1.2rem;
       font-weight: bold;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
     }
     ul li {
@@ -634,7 +634,7 @@ export const Footer = styled.footer`
       text-transform: uppercase;
       font-family: 'Poppins', sans-serif;
       -webkit-text-stroke: 1px #fff;
-      letter-spacing: 2px;
+      letter-spacing: 0.5px;
       margin-bottom: 1.6rem;
     }
     h4 {
