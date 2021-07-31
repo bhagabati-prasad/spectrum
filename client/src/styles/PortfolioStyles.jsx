@@ -73,6 +73,11 @@ export const Header = styled.header`
     font-size: 1.4rem;
     padding: 4px;
     z-index: 99;
+    ${({ darkMode }) =>
+      darkMode === 'dark' &&
+      css`
+        color: ${dark_theme.portfolio_op_body_bg};
+      `}
     ${({ bg }) =>
       bg === 'true' &&
       css`

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { dark_theme, defaults, light_theme } from './_variables';
+import { dark_theme, defaults, light_theme, media } from './_variables';
 
 export const PortfolioFormSection = styled.section`
   position: relative;
@@ -51,6 +51,9 @@ export const InputGroupHeading = styled.div`
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
     text-transform: capitalize;
+    @media ${media.sm} {
+      font-size: 3rem;
+    }
   }
   ${({ darkMode }) =>
     darkMode === 'dark' &&
@@ -73,6 +76,9 @@ export const InputGroupBox = styled.div`
   border-radius: 4px;
   padding: 4rem 2rem;
   margin: 2rem 0;
+  h5 {
+    color: ${light_theme.portfolio_op_body_bg};
+  }
   button {
     width: 100%;
     outline: none;
@@ -85,6 +91,7 @@ export const InputGroupBox = styled.div`
     font-family: 'Poppins', sans-serif;
     letter-spacing: 2px;
     text-transform: uppercase;
+    margin: 0.57rem 0;
     &.add_project_btn {
       width: auto;
       display: flex;
@@ -99,6 +106,9 @@ export const InputGroupBox = styled.div`
     css`
       background-color: ${dark_theme.body_bg};
       border-color: #333;
+      h5 {
+        color: ${dark_theme.portfolio_op_body_bg};
+      }
       button.add_project_btn {
         color: ${dark_theme.portfolio_op_body_bg};
         background-color: ${dark_theme.portfolio_op_body_bg_darker};
