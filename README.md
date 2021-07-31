@@ -1,4 +1,4 @@
-# Spectrum: Portfolio
+# Portflix: Portfolio Generator
 
 The project is to generate a portfolio as per the data submitted by the user. User can sign up and fill the portfolio form and generate portfolio page dynamically.
 
@@ -14,7 +14,7 @@ As it's in development phase, first you need to download the project or clone th
 
 ### Run Server
 
-First install mongoDB database and create database named `spectrum`.
+First install mongoDB database and create database named `portflix`.
 <br />
 Then go to server folder (./server) and open command panel to run the command to install node_modules:
 
