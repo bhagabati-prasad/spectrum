@@ -244,7 +244,7 @@ const Portfolio = () => {
                   I'm A {userInfo?.fname}
                   <Typewriter
                     options={{
-                      strings: ['Web developer', 'UI/UX designer'],
+                      strings: userInfo?.domain.split(','),
                       autoStart: true,
                       loop: true,
                     }}
@@ -253,42 +253,42 @@ const Portfolio = () => {
               </div>
             </div>
             <div className='soc_icon'>
-              <Link
-                to={`https://www.facebook.com/${userInfo?.social?.facebook}`}
+              <a
+                href={`https://www.facebook.com/${userInfo?.social?.facebook}`}
                 className='ml-0'
                 target='_blank'
                 rel='noopener'
               >
                 <i className='fab fa-facebook-f'></i>
-              </Link>
-              <Link
-                to={`https://twitter.com/${userInfo?.social?.twitter}`}
+              </a>
+              <a
+                href={`https://twitter.com/${userInfo?.social?.twitter}`}
                 target='_blank'
                 rel='noopener'
               >
                 <i className='fab fa-twitter'></i>
-              </Link>
-              <Link
-                to={`https://www.instagram.com/${userInfo?.social?.instagram}`}
+              </a>
+              <a
+                href={`https://www.instagram.com/${userInfo?.social?.instagram}`}
                 target='_blank'
                 rel='noopener'
               >
                 <i className='fab fa-instagram'></i>
-              </Link>
-              <Link
-                to={`https://www.linkedin.com/in/${userInfo?.social?.linkedin}`}
+              </a>
+              <a
+                href={`https://www.linkedin.com/in/${userInfo?.social?.linkedin}`}
                 target='_blank'
                 rel='noopener'
               >
                 <i className='fab fa-linkedin-in'></i>
-              </Link>
-              <Link
-                to={`https://www.github.com/in/${userInfo?.social?.linkedin}`}
+              </a>
+              <a
+                href={`https://www.github.com/in/${userInfo?.social?.linkedin}`}
                 target='_blank'
                 rel='noopener'
               >
                 <i className='fab fa-github'></i>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

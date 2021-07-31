@@ -630,6 +630,7 @@ export const Footer = styled.footer`
     margin: 1rem 0;
     .logo {
       color: #000;
+      font-size: 1.8rem;
       font-weight: bold;
       text-transform: uppercase;
       font-family: 'Poppins', sans-serif;
