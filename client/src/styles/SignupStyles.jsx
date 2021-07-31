@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { dark_theme, defaults, light_theme } from './_variables';
+import { dark_theme, defaults, light_theme, media } from './_variables';
 
 export const SignupSection = styled.section`
   min-height: auto;
@@ -13,10 +13,13 @@ export const FormSection = styled.div`
   width: 100%;
   display: grid;
   place-items: center;
+  @media ${media.sm} {
+    padding: 3.4rem 0;
+  }
   .form_container {
     padding: 1.7rem 1.2rem;
     width: 35.4rem;
-    max-width: 95%;
+    max-width: 95vw;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 7px;
     backdrop-filter: blur(5px);
