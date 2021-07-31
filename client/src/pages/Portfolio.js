@@ -244,7 +244,7 @@ const Portfolio = () => {
                   I'm A {userInfo?.fname}
                   <Typewriter
                     options={{
-                      strings: userInfo?.domain.split(','),
+                      strings: userInfo?.domain && userInfo?.domain.split(','),
                       autoStart: true,
                       loop: true,
                     }}
