@@ -278,7 +278,6 @@ const PortfolioForm = () => {
                     placeholder='e.g: Prasad'
                     spellCheck='false'
                     maxLength='20'
-                    required
                     value={user.mname}
                     onChange={handleUserChange}
                   />
