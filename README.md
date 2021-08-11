@@ -1,10 +1,10 @@
 # Portflix: Portfolio Generator
 
 The project is to generate a portfolio as per the data submitted by the user. User can sign up and fill the portfolio form and generate portfolio page dynamically.
+<br /><br />
+URL: <https://portflix.herokuapp.com/>
 
 ## Installation
-
----
 
 This project uses React.js for front-end and Node.js for back-end.
 <br />
@@ -32,7 +32,6 @@ $ npm run dev
 
 ### Run Client
 
-<br />
 Then, go back and open client folder (./client) and open command panel. Run the command to install React.
 
 ```
@@ -50,8 +49,6 @@ Then the project will start on local server: `http://localhost:3000`.
 <br>
 
 ## Plugins used
-
----
 
 - typewriter-effect
 - react-background-slider
